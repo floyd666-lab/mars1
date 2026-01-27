@@ -60,10 +60,11 @@ body {
   transform: scale(1) translateY(0);
 }
 
-.section.visible .gallery img {
-  opacity:1;
-  transform:scale(1) translateY(0);
-}
+.section.visible .gallery img:nth-child(1) { transition-delay: 0.1s; }
+.section.visible .gallery img:nth-child(2) { transition-delay: 0.3s; }
+.section.visible .gallery img:nth-child(3) { transition-delay: 0.5s; }
+.section.visible .gallery img:nth-child(4) { transition-delay: 0.7s; }
+
 
 .couple{display:flex;justify-content:space-around;gap:20px;}
 .couple img{width:140px;height:140px;border-radius:50%;object-fit:cover;}
@@ -727,31 +728,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
+
+        // маленькая задержка, чтобы браузер успел применить opacity:0
+        setTimeout(() => {
+          entry.target.classList.add("visible");
+        }, 100);
+
         observer.unobserve(entry.target);
       }
     });
   }, {
-    threshold: 0.15
+    threshold: 0.2
   });
 
   sections.forEach(section => {
     observer.observe(section);
   });
 
-  // 🔥 ПОКАЗЫВАЕМ ПЕРВЫЕ БЛОКИ, ЕСЛИ ОНИ УЖЕ В ЭКРАНЕ
-  setTimeout(() => {
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.9) {
-        section.classList.add("visible");
-      }
-    });
-  }, 300);
-
 });
-);
 </script>
+
 
 </body>
 </html>
