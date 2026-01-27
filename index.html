@@ -1,1 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Марсель & Рухсора</title>
+
+  <!-- Hide from Google -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --wine: #7A1F2B;
+      --bg: #ffffff;
+      --text: #222;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 420px;
+      width: 100%;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .lang {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .lang span {
+      cursor: pointer;
+      color: var(--wine);
+      font-weight: 500;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      margin-top: 40px;
+      color: var(--wine);
+    }
+
+    .subtitle {
+      margin-top: 5px;
+      font-size: 16px;
+    }
+
+    .section {
+      margin-top: 40px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .timer {
+      font-size: 22px;
+      color: var(--wine);
+      margin-top: 10px;
+    }
+
+    .button {
+      background: var(--wine);
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-top: 15px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    .thanks {
+      margin-top: 15px;
+      color: var(--wine);
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Language -->
+    <div class="lang">
+      <span onclick="setLang('ru')">RU</span>
+      <span onclick="setLang('uz')">UZ</span>
+      <span onclick="setLang('en')">EN</span>
+    </div>
+
+    <!-- Cover -->
+    <h1>Марсель & Рухсора</h1>
+    <div class="subtitle" id="wegetting">Мы женимся</div>
+
+    <!-- Details -->
+    <div class="section">
+      <div class="title" id="date">11 апреля 2026</div>
+      <div id="place">Ташкент, Diamond Hall</div>
+    </div>
+
+    <!-- Timer -->
+    <div class="section">
+      <div class="title" id="until">До свадьбы осталось</div>
+      <div class="timer" id="timer"></div>
+    </div>
+
+    <!-- Map -->
+    <div class="section">
+      <button class="button" onclick="openMap()" id="mapbtn">Открыть карту</button>
+    </div>
+
+    <!-- Invitation -->
+    <div class="section">
+      <p id="invite">
+        Мы будем очень рады разделить с вами самый важный день в нашей жизни.
+      </p>
+    </div>
+
+    <!-- RSVP -->
+    <div class="section">
+      <div class="title" id="confirm">Подтвердите присутствие</div>
+
+      <input type="text" id="guestName" placeholder="Ваше имя">
+
+      <select id="status">
+        <option value="yes">Я приду</option>
+        <option value="no">К сожалению, не смогу</option>
+      </select>
+
+      <button class="button" onclick="sendForm()" id="sendbtn">Отправить</button>
+
+      <div class="thanks" id="thanks">Спасибо за ответ!</div>
+    </div>
+
+  </div>
+
+<script>
+/* ===== LANGUAGE DATA ===== */
+const texts = {
+  ru: {
+    wegetting: "Мы женимся",
+    date: "11 апреля 2026",
+    place: "Ташкент, Diamond Hall",
+    until: "До свадьбы осталось",
+    mapbtn: "Открыть карту",
+    invite: "Мы будем очень рады разделить с вами самый важный день в нашей жизни.",
+    confirm: "Подтвердите присутствие",
+    nameph: "Ваше имя",
+    yes: "Я приду",
+    no: "К сожалению, не смогу",
+    send: "Отправить",
+    thanks: "Спасибо за ответ!"
+  },
+  uz: {
+    wegetting: "Biz turmush qurmoqdamiz",
+    date: "11 aprel 2026",
+    place: "Toshkent, Diamond Hall",
+    until: "To‘yga qolgan vaqt",
+    mapbtn: "Xaritani ochish",
+    invite: "Hayotimizdagi eng muhim kunni siz bilan birga nishonlashdan juda xursand bo‘lamiz.",
+    confirm: "Ishtirokingizni tasdiqlang",
+    nameph: "Ismingiz",
+    yes: "Kelaman",
+    no: "Afsuski, kela olmayman",
+    send: "Yuborish",
+    thanks: "Javobingiz uchun rahmat!"
+  },
+  en: {
+    wegetting: "We are getting married",
+    date: "April 11, 2026",
+    place: "Tashkent, Diamond Hall",
+    until: "Time left until the wedding",
+    mapbtn: "Open map",
+    invite: "We would be very happy to share the most important day of our lives with you.",
+    confirm: "Please confirm your attendance",
+    nameph: "Your name",
+    yes: "I will attend",
+    no: "Unfortunately, I can't attend",
+    send: "Send",
+    thanks: "Thank you for your response!"
+  }
+};
+
+function setLang(lang) {
+  document.getElementById("wegetting").innerText = texts[lang].wegetting;
+  document.getElementById("date").innerText = texts[lang].date;
+  document.getElementById("place").innerText = texts[lang].place;
+  document.getElementById("until").innerText = texts[lang].until;
+  document.getElementById("mapbtn").innerText = texts[lang].mapbtn;
+  document.getElementById("invite").innerText = texts[lang].invite;
+  document.getElementById("confirm").innerText = texts[lang].confirm;
+  document.getElementById("guestName").placeholder = texts[lang].nameph;
+  document.getElementById("status").options[0].text = texts[lang].yes;
+  document.getElementById("status").options[1].text = texts[lang].no;
+  document.getElementById("sendbtn").innerText = texts[lang].send;
+  document.getElementById("thanks").innerText = texts[lang].thanks;
+}
+
+/* ===== TIMER ===== */
+const weddingDate = new Date("2026-04-11T18:00:00");
+
+function updateTimer() {
+  const now = new Date();
+  const diff = weddingDate - now;
+
+  if (diff <= 0) {
+    document.getElementById("timer").innerText = "Сегодня свадьба! 🎉";
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+  document.getElementById("timer").innerText =
+    `${days} дн. ${hours} ч. ${minutes} мин.`;
+}
+
+setInterval(updateTimer, 60000);
+updateTimer();
+
+/* ===== MAP ===== */
+function openMap() {
+  window.open("https://www.google.com/maps/search/Diamond+Hall+Tashkent", "_blank");
+}
+
+/* ===== FORM (SEND TO GOOGLE SHEETS) ===== */
+function sendForm() {
+  const name = document.getElementById("guestName").value;
+  const status = document.getElementById("status").value;
+
+  if (!name) {
+    alert("Введите имя");
+    return;
+  }
+
+  fetch("ВСТАВЬ_СЮДА_ССЫЛКУ_ИЗ_GOOGLE_SCRIPT", {
+    method: "POST",
+    body: JSON.stringify({
+      name: name,
+      status: status === "yes" ? "Приду" : "Не приду"
+    })
+  })
+  .then(() => {
+    document.getElementById("thanks").style.display = "block";
+  })
+  .catch(() => {
+    alert("Ошибка отправки. Попробуйте ещё раз.");
+  });
+}
+</script>
+
+</body>
+</html>
 
