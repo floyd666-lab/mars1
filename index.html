@@ -722,22 +722,35 @@ function closeThank() {
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
+  const sections = document.querySelectorAll(".section");
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
-        observer.unobserve(entry.target); // один раз и навсегда
+        observer.unobserve(entry.target);
       }
     });
   }, {
-    threshold: 0.2
+    threshold: 0.15
   });
 
-  document.querySelectorAll(".section").forEach(section => {
+  sections.forEach(section => {
     observer.observe(section);
   });
 
+  // 🔥 ПОКАЗЫВАЕМ ПЕРВЫЕ БЛОКИ, ЕСЛИ ОНИ УЖЕ В ЭКРАНЕ
+  setTimeout(() => {
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.9) {
+        section.classList.add("visible");
+      }
+    });
+  }, 300);
+
 });
+);
 </script>
 
 </body>
