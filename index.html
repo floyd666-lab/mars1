@@ -893,19 +893,11 @@ function tryStartMusic() {
     fadeInMusic();
     musicBtn.innerText = "Остановить музыку";
 
-    // после запуска убираем все слушатели
-    window.removeEventListener("scroll", tryStartMusic);
-    window.removeEventListener("touchstart", tryStartMusic);
-    window.removeEventListener("wheel", tryStartMusic);
   }).catch(() => {
     // если браузер заблокировал — ничего не делаем
   });
 }
 
-// ловим ЛЮБОЕ первое действие пользователя
-window.addEventListener("scroll", tryStartMusic, { passive: true });
-window.addEventListener("touchstart", tryStartMusic, { passive: true });
-window.addEventListener("wheel", tryStartMusic, { passive: true });
 
 // плавное увеличение громкости
 function fadeInMusic() {
@@ -913,6 +905,45 @@ function fadeInMusic() {
   const fade = setInterval(() => {
     if (volume < 1) {
       volume += 0.02;   // скорость нарастания
+      music.volume = volume;
+    } else {
+      clearInterval(fade);
+    }
+  }, 100);
+}
+</script>
+<script>
+let musicStarted = false;
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+function startMusicOnce() {
+  if (musicStarted) return;
+
+  music.volume = 0;
+  music.play().then(() => {
+    musicStarted = true;
+    fadeInMusic();
+    musicBtn.innerText = "Остановить музыку";
+
+    // после запуска убираем обработчики
+    document.removeEventListener("touchstart", startMusicOnce);
+    document.removeEventListener("click", startMusicOnce);
+  }).catch(() => {
+    // если браузер вдруг отказал — ничего не делаем
+  });
+}
+
+// ЛЮБОЕ ПЕРВОЕ КАСАНИЕ ИЛИ КЛИК
+document.addEventListener("touchstart", startMusicOnce, { once: true });
+document.addEventListener("click", startMusicOnce, { once: true });
+
+// плавное появление громкости
+function fadeInMusic() {
+  let volume = 0;
+  const fade = setInterval(() => {
+    if (volume < 1) {
+      volume += 0.02;
       music.volume = volume;
     } else {
       clearInterval(fade);
