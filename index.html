@@ -1,171 +1,253 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Марсель & Рухсора</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Марсель & Рухсора</title>
 
-  <!-- Hide from Google -->
-  <meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="noindex, nofollow">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --wine: #7A1F2B;
-      --bg: #ffffff;
-      --text: #222;
-    }
+<style>
+:root {
+  --wine: #7A1F2B;
+  --wine-light: #9a3a46;
+  --text: #222;
+}
 
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      display: flex;
-      justify-content: center;
-    }
+* { box-sizing: border-box; }
 
-    .container {
-      max-width: 420px;
-      width: 100%;
-      padding: 24px;
-      text-align: center;
-    }
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+}
 
-    .lang {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      font-size: 14px;
-    }
+.container {
+  max-width: 420px;
+  width: 100%;
+}
 
-    .lang span {
-      cursor: pointer;
-      color: var(--wine);
-      font-weight: 500;
-    }
+/* Language */
+.lang {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+}
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px;
-      margin-top: 40px;
-      color: var(--wine);
-    }
+.lang span {
+  cursor: pointer;
+  color: white;
+  opacity: 0.7;
+  transition: 0.3s;
+}
 
-    .subtitle {
-      margin-top: 5px;
-      font-size: 16px;
-    }
+.lang span:hover {
+  opacity: 1;
+}
 
-    .section {
-      margin-top: 40px;
-    }
+/* HERO */
+.hero {
+  height: 100vh;
+  background-image: url("photos/main.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .title {
-      font-size: 20px;
-      font-weight: 500;
-      margin-bottom: 10px;
-    }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
 
-    .timer {
-      font-size: 22px;
-      color: var(--wine);
-      margin-top: 10px;
-    }
+.hero-content {
+  position: relative;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  animation: fadeUp 1.5s ease forwards;
+}
 
-    .button {
-      background: var(--wine);
-      color: white;
-      border: none;
-      padding: 14px 24px;
-      border-radius: 10px;
-      font-size: 16px;
-      margin-top: 15px;
-      cursor: pointer;
-      width: 100%;
-    }
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  margin-bottom: 12px;
+}
 
-    input, select {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-    }
+.hero .line {
+  width: 60px;
+  height: 2px;
+  background: white;
+  margin: 15px auto;
+  opacity: 0.7;
+}
 
-    .thanks {
-      margin-top: 15px;
-      color: var(--wine);
-      display: none;
-    }
-  </style>
+.hero .phrase {
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+.hero .date {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+/* Section */
+.section {
+  padding: 60px 24px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.title {
+  font-size: 22px;
+  color: var(--wine);
+  margin-bottom: 12px;
+}
+
+/* Timer */
+.timer {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+/* Button */
+.button {
+  margin-top: 20px;
+  background: linear-gradient(135deg, var(--wine), var(--wine-light));
+  color: white;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(122,31,43,0.3);
+}
+
+/* Form */
+input, select {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+
+.thanks {
+  margin-top: 15px;
+  color: var(--wine);
+  display: none;
+  font-weight: 500;
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
 </head>
 
 <body>
-  <div class="container">
 
-    <!-- Language -->
-    <div class="lang">
-      <span onclick="setLang('ru')">RU</span>
-      <span onclick="setLang('uz')">UZ</span>
-      <span onclick="setLang('en')">EN</span>
+<!-- Language -->
+<div class="lang">
+  <span onclick="setLang('ru')">RU</span>
+  <span onclick="setLang('uz')">UZ</span>
+  <span onclick="setLang('en')">EN</span>
+</div>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Марсель & Рухсора</h1>
+      <div class="line"></div>
+      <div class="phrase" id="phrase">Разделите с нами самый счастливый день!</div>
+      <div class="date" id="herodate">11 апреля 2026</div>
     </div>
-
-    <!-- Cover -->
-    <h1>Марсель & Рухсора</h1>
-    <div class="subtitle" id="wegetting">Мы женимся</div>
-
-    <!-- Details -->
-    <div class="section">
-      <div class="title" id="date">11 апреля 2026</div>
-      <div id="place">Ташкент, Diamond Hall</div>
-    </div>
-
-    <!-- Timer -->
-    <div class="section">
-      <div class="title" id="until">До свадьбы осталось</div>
-      <div class="timer" id="timer"></div>
-    </div>
-
-    <!-- Map -->
-    <div class="section">
-      <button class="button" onclick="openMap()" id="mapbtn">Открыть карту</button>
-    </div>
-
-    <!-- Invitation -->
-    <div class="section">
-      <p id="invite">
-        Мы будем очень рады разделить с вами самый важный день в нашей жизни.
-      </p>
-    </div>
-
-    <!-- RSVP -->
-    <div class="section">
-      <div class="title" id="confirm">Подтвердите присутствие</div>
-
-      <input type="text" id="guestName" placeholder="Ваше имя">
-
-      <select id="status">
-        <option value="yes">Я приду</option>
-        <option value="no">К сожалению, не смогу</option>
-      </select>
-
-      <button class="button" onclick="sendForm()" id="sendbtn">Отправить</button>
-
-      <div class="thanks" id="thanks">Спасибо за ответ!</div>
-    </div>
-
   </div>
 
+  <!-- Details -->
+  <div class="section">
+    <div class="title" id="place">Ташкент, Diamond Hall</div>
+  </div>
+
+  <!-- Timer -->
+  <div class="section">
+    <div class="title" id="until">До свадьбы осталось</div>
+    <div class="timer" id="timer"></div>
+  </div>
+
+  <!-- Map -->
+  <div class="section">
+    <button class="button" onclick="openMap()" id="mapbtn">Открыть карту</button>
+  </div>
+
+  <!-- Invite -->
+  <div class="section">
+    <p id="invite">
+      Мы будем очень рады разделить с вами самый важный день в нашей жизни.
+    </p>
+  </div>
+
+  <!-- RSVP -->
+  <div class="section">
+    <div class="title" id="confirm">Подтвердите присутствие</div>
+
+    <input type="text" id="guestName" placeholder="Ваше имя">
+
+    <select id="status">
+      <option value="yes">Я приду</option>
+      <option value="no">К сожалению, не смогу</option>
+    </select>
+
+    <button class="button" onclick="sendForm()" id="sendbtn">Отправить</button>
+
+    <div class="thanks" id="thanks">Спасибо за ответ!</div>
+  </div>
+
+</div>
+
 <script>
-/* ===== LANGUAGE DATA ===== */
+// Scroll animation
+const sections = document.querySelectorAll('.section');
+window.addEventListener('scroll', () => {
+  const trigger = window.innerHeight * 0.85;
+  sections.forEach(sec => {
+    if (sec.getBoundingClientRect().top < trigger) {
+      sec.classList.add('visible');
+    }
+  });
+});
+
+// Languages
 const texts = {
   ru: {
-    wegetting: "Мы женимся",
-    date: "11 апреля 2026",
+    phrase: "Разделите с нами самый счастливый день!",
     place: "Ташкент, Diamond Hall",
     until: "До свадьбы осталось",
     mapbtn: "Открыть карту",
@@ -178,8 +260,7 @@ const texts = {
     thanks: "Спасибо за ответ!"
   },
   uz: {
-    wegetting: "Biz turmush qurmoqdamiz",
-    date: "11 aprel 2026",
+    phrase: "Hayotimizdagi eng baxtli kunni biz bilan birga o‘tkazing!",
     place: "Toshkent, Diamond Hall",
     until: "To‘yga qolgan vaqt",
     mapbtn: "Xaritani ochish",
@@ -192,8 +273,7 @@ const texts = {
     thanks: "Javobingiz uchun rahmat!"
   },
   en: {
-    wegetting: "We are getting married",
-    date: "April 11, 2026",
+    phrase: "Share with us the happiest day of our lives!",
     place: "Tashkent, Diamond Hall",
     until: "Time left until the wedding",
     mapbtn: "Open map",
@@ -208,8 +288,7 @@ const texts = {
 };
 
 function setLang(lang) {
-  document.getElementById("wegetting").innerText = texts[lang].wegetting;
-  document.getElementById("date").innerText = texts[lang].date;
+  document.getElementById("phrase").innerText = texts[lang].phrase;
   document.getElementById("place").innerText = texts[lang].place;
   document.getElementById("until").innerText = texts[lang].until;
   document.getElementById("mapbtn").innerText = texts[lang].mapbtn;
@@ -222,7 +301,7 @@ function setLang(lang) {
   document.getElementById("thanks").innerText = texts[lang].thanks;
 }
 
-/* ===== TIMER ===== */
+// Timer
 const weddingDate = new Date("2026-04-11T18:00:00");
 
 function updateTimer() {
@@ -245,12 +324,12 @@ function updateTimer() {
 setInterval(updateTimer, 60000);
 updateTimer();
 
-/* ===== MAP ===== */
+// Map
 function openMap() {
   window.open("https://www.google.com/maps/search/Diamond+Hall+Tashkent", "_blank");
 }
 
-/* ===== FORM (SEND TO GOOGLE SHEETS) ===== */
+// FORM — ВСТАВЬ СЮДА СВОЮ ССЫЛКУ GOOGLE SCRIPT
 function sendForm() {
   const name = document.getElementById("guestName").value;
   const status = document.getElementById("status").value;
@@ -260,7 +339,7 @@ function sendForm() {
     return;
   }
 
-  fetch("https://script.google.com/macros/s/AKfycbwhWqFHVtWT6blO-WNAw3Hc1hoiUylMkF3tvzBtboUzAJsk6crT4aO5b_1QNoArqX4N/exec", {
+  fetch("ВСТАВЬ_СЮДА_СВОЮ_ССЫЛКУ_GOOGLE_SCRIPT", {
     method: "POST",
     body: JSON.stringify({
       name: name,
@@ -278,4 +357,3 @@ function sendForm() {
 
 </body>
 </html>
-
