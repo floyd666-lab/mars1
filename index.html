@@ -143,6 +143,49 @@ input,select,textarea{
   opacity:1;
   font-weight:600;
 }
+  /* ===== THANK YOU EFFECT ===== */
+.thank-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.6s ease;
+}
+
+.thank-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.thank-box {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 24px;
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  color: #7A1F2B;
+  text-align: center;
+  max-width: 300px;
+  animation: pop 0.8s ease;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+@keyframes pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
 </style>
 </head>
 
@@ -230,7 +273,7 @@ input,select,textarea{
   <h4 id="musicTitle"></h4>
   <textarea id="music"></textarea>
 
-  <button class="button" id="sendBtn" onclick="sendForm()"></button>
+  <button class="button" id="sendBtn" onclick="sendForm()"></button>В
 </div>
 
 </div>
@@ -380,6 +423,115 @@ function toggleMusic() {
     playing = false;
     musicBtn.innerText = "🎵 Включить музыку";
   }
+}
+</script>
+<!-- THANK YOU OVERLAY -->
+<div class="thank-overlay" id="thankOverlay">
+  <div class="thank-box" id="thankText"></div>
+  <canvas id="confettiCanvas"></canvas>
+</div>
+<!-- THANK YOU OVERLAY -->
+<div class="thank-overlay" id="thankOverlay">
+  <div class="thank-box" id="thankText"></div>
+  <canvas id="confettiCanvas"></canvas>
+</div>
+<script>
+function sendForm() {
+  const btn = document.getElementById("sendBtn");
+  const guestName = document.getElementById("name").value || "Дорогой гость";
+
+  btn.classList.add('loading');
+  btn.disabled = true;
+  btn.innerText = "Отправка";
+
+  const payload = {
+    name: document.getElementById("name").value,
+    status: document.getElementById("status").value,
+    food: document.getElementById("food").value,
+    alcohol: document.getElementById("alcohol").value,
+    child: document.getElementById("child").value,
+    music: document.getElementById("music").value
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbziVOcxP9geSdRSwgaQdPh9NgeYV1iV6xZuOD-0Je4wGI7TZoCC7pDT6wabo9olwfow/exec", {
+    method: "POST",
+    body: JSON.stringify(payload)
+  })
+  .then(() => {
+
+    // скрываем форму
+    const formSection = document.getElementById("sendBtn").closest('.section');
+    formSection.style.transition = "0.6s ease";
+    formSection.style.opacity = "0";
+    formSection.style.transform = "scale(0.95)";
+
+    // показываем окно благодарности
+    const overlay = document.getElementById("thankOverlay");
+    const thankText = document.getElementById("thankText");
+
+    thankText.innerText = `Спасибо, ${guestName}! 💛\nМы вас ждём!`;
+    overlay.classList.add("show");
+
+    // запускаем конфетти
+    startConfetti();
+
+  })
+  .catch(() => {
+    btn.classList.remove('loading');
+    btn.innerText = "Ошибка! Попробуйте снова";
+    btn.disabled = false;
+  });
+}
+</script>
+<script>
+function startConfetti() {
+  const canvas = document.getElementById("confettiCanvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const confetti = [];
+  const colors = ["#7A1F2B", "#E3C3A8", "#FFD700", "#FFFFFF", "#FF6F91"];
+
+  for (let i = 0; i < 120; i++) {
+    confetti.push({
+      x: Math.random() < 0.5 ? 0 : canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 6 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      speed: Math.random() * 4 + 2,
+      dir: Math.random() < 0.5 ? 1 : -1
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    confetti.forEach(c => {
+      ctx.beginPath();
+      ctx.fillStyle = c.color;
+      ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    update();
+    requestAnimationFrame(draw);
+  }
+
+  function update() {
+    confetti.forEach(c => {
+      c.x += c.speed * c.dir;
+      c.y += 3;
+
+      if (c.y > canvas.height) {
+        c.y = -10;
+        c.x = Math.random() * canvas.width;
+      }
+    });
+  }
+
+  draw();
 }
 </script>
 
