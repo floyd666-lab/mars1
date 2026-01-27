@@ -884,33 +884,40 @@ let musicStarted = false;
 const music = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
 
-// запуск при первом скролле
-window.addEventListener("scroll", startMusicOnScroll, { once: true });
-
-function startMusicOnScroll() {
+function tryStartMusic() {
   if (musicStarted) return;
 
-  music.volume = 0;   // начинаем с тишины
+  music.volume = 0;
   music.play().then(() => {
     musicStarted = true;
     fadeInMusic();
     musicBtn.innerText = "Остановить музыку";
+
+    // после запуска убираем все слушатели
+    window.removeEventListener("scroll", tryStartMusic);
+    window.removeEventListener("touchstart", tryStartMusic);
+    window.removeEventListener("wheel", tryStartMusic);
   }).catch(() => {
-    // если браузер вдруг заблокировал — просто молча ничего не делаем
+    // если браузер заблокировал — ничего не делаем
   });
 }
+
+// ловим ЛЮБОЕ первое действие пользователя
+window.addEventListener("scroll", tryStartMusic, { passive: true });
+window.addEventListener("touchstart", tryStartMusic, { passive: true });
+window.addEventListener("wheel", tryStartMusic, { passive: true });
 
 // плавное увеличение громкости
 function fadeInMusic() {
   let volume = 0;
   const fade = setInterval(() => {
     if (volume < 1) {
-      volume += 0.02;        // скорость нарастания (можно менять)
+      volume += 0.02;   // скорость нарастания
       music.volume = volume;
     } else {
       clearInterval(fade);
     }
-  }, 100); // каждые 100 мс
+  }, 100);
 }
 </script>
 
