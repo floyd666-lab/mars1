@@ -313,6 +313,17 @@ input,select,textarea{
   transform: scale(1.05);
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
+/* ===== SECTION BASE ANIMATION (ОБЯЗАТЕЛЬНО) ===== */
+.section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.9s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 </style>
 </head>
@@ -344,11 +355,11 @@ input,select,textarea{
 </div>
 
 <!-- STORY -->
-<div class="section visible">
+<div class="section">
   <div class="title" id="storyTitle"></div>
 </div>
   <!-- COUPLE PREMIUM -->
-<div class="section couple-section visible">
+<div class="section couple-section">
   <div class="title">Жених и Невеста</div>
 
   <div class="couple">
@@ -423,7 +434,7 @@ input,select,textarea{
   <h4 id="musicTitle"></h4>
   <textarea id="music"></textarea>
 
-  <button class="button" id="sendBtn" onclick="sendForm()"></button>В
+  <button class="button" id="sendBtn" onclick="sendForm()"></button>
 </div>
 
 </div>
