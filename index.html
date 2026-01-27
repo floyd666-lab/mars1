@@ -88,7 +88,14 @@ body {
 .section.visible .gallery img:nth-child(4) { transition-delay: 0.7s; }
 
 
-.couple{display:flex;justify-content:space-around;gap:20px;}
+.couple {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
 .couple img{width:140px;height:140px;border-radius:50%;object-fit:cover;}
 
 .colors{display:flex;justify-content:center;gap:15px;}
@@ -226,6 +233,7 @@ input,select,textarea{
   opacity: 0;
   transform: translateY(40px);
   transition: 0.8s ease;
+  max-width: 160px;
 }
 
 .section.visible .person {
@@ -262,18 +270,37 @@ input,select,textarea{
   opacity: 1;
   transform: translateY(0);
 }
-
+/* ===== ROUND COUPLE FRAMES PREMIUM ===== */
 .frame {
-  width: 170px;
-  height: 220px;
+  width: 160px;
+  height: 160px;
   padding: 4px;
-  border-radius: 26px;
+  border-radius: 50%;
   background: linear-gradient(135deg, #E3C3A8, #7A1F2B, #E3C3A8);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.35);
   margin: auto;
   overflow: hidden;
   transition: 0.5s ease;
 }
+
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: 0.5s ease;
+}
+
+/* Hover эффект */
+.frame:hover img {
+  transform: scale(1.08);
+}
+
+.frame:hover {
+  box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+  transform: translateY(-6px);
+}
+
 
 .frame::before {
   content: "";
@@ -285,13 +312,6 @@ input,select,textarea{
   z-index: -1;
 }
 
-.frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 18px;
-  transition: 0.5s ease;
-}
 
 /* Hover эффект */
 .frame:hover img {
@@ -410,6 +430,25 @@ input,select,textarea{
 
   .hero-names .amp {
     font-size: 38px;
+  }
+}
+/* ===== MOBILE COUPLE FIX ===== */
+@media (max-width: 480px) {
+  .frame {
+    width: 130px;
+    height: 130px;
+  }
+
+  .couple {
+    gap: 22px;
+  }
+
+  .name {
+    font-size: 20px;
+  }
+
+  .role {
+    font-size: 16px;
   }
 }
 
