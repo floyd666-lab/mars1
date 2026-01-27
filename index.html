@@ -268,6 +268,32 @@ input,select,textarea{
   font-style: italic;
   color: #555;
 }
+/* ===== CLOSE BUTTON ===== */
+.close-btn {
+  margin-top: 25px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(135deg, #7A1F2B, #E3C3A8);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.6s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.thank-overlay.show .close-btn {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1s; /* появляется через 1 секунду */
+}
+
+.close-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
 
 </style>
 </head>
@@ -299,11 +325,11 @@ input,select,textarea{
 </div>
 
 <!-- STORY -->
-<div class="section">
+<div class="section visible">
   <div class="title" id="storyTitle"></div>
 </div>
   <!-- COUPLE PREMIUM -->
-<div class="section couple-section">
+<div class="section couple-section visible">
   <div class="title">Жених и Невеста</div>
 
   <div class="couple">
@@ -530,15 +556,16 @@ function toggleMusic() {
   }
 }
 </script>
+
 <!-- THANK YOU OVERLAY -->
 <div class="thank-overlay" id="thankOverlay">
-  <div class="thank-box" id="thankText"></div>
+  <div class="thank-box">
+    <div id="thankText"></div>
+    <button class="close-btn" id="closeBtn" onclick="closeThank()">Закрыть</button>
+  </div>
   <canvas id="confettiCanvas"></canvas>
 </div>
-<!-- THANK YOU OVERLAY -->
-<div class="thank-overlay" id="thankOverlay">
-  <div class="thank-box" id="thankText"></div>
-  <canvas id="confettiCanvas"></canvas>
+
 </div>
 <script>
 function sendForm() {
@@ -579,6 +606,9 @@ function sendForm() {
 
     // запускаем конфетти
     startConfetti();
+// показываем кнопку закрыть с задержкой
+const closeBtn = document.getElementById("closeBtn");
+closeBtn.style.display = "block";
 
   })
   .catch(() => {
@@ -637,6 +667,18 @@ function startConfetti() {
   }
 
   draw();
+}
+</script>
+<script>
+function closeThank() {
+  const overlay = document.getElementById("thankOverlay");
+
+  overlay.classList.remove("show");
+
+  // очищаем конфетти
+  const canvas = document.getElementById("confettiCanvas");
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 </script>
 
