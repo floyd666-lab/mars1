@@ -24,6 +24,7 @@ body {margin:0;font-family:Inter,sans-serif;background:#fff;color:#222;}
 .hero {
   height:100vh;
   background:url("photos/main.jpg") center/cover no-repeat;
+  background-attachment: fixed;
   position:relative;
   display:flex;
   justify-content:center;
@@ -88,11 +89,57 @@ input,select,textarea{
   height: 280px;
   border: none;
 }
+/* Hero text animation */
+.hero-content h1,
+.hero-content .phrase,
+.hero-content div {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroFade 1.5s ease forwards;
+}
+
+.hero-content .phrase { animation-delay: 0.6s; }
+.hero-content div { animation-delay: 1.2s; }
+
+@keyframes heroFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  /* Music Button */
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(122,31,43,0.9);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 30px;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 100;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+  /* Divider */
+.divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #7A1F2B, transparent);
+  margin: 30px auto;
+  opacity: 0.6;
+}
 
 </style>
 </head>
 
 <body>
+  <!-- Music Button -->
+<div class="music-btn" onclick="toggleMusic()">🎵 Включить музыку</div>
+
+<audio id="bgMusic" loop>
+  <source src="music/song.mp3" type="audio/mpeg">
+</audio>
 <div class="container">
 
 <!-- HERO -->
@@ -242,6 +289,21 @@ window.addEventListener('scroll', () => {
   });
 });
 </script>
+<script>
+let playing = false;
+const music = document.getElementById("bgMusic");
 
+function toggleMusic() {
+  if (!playing) {
+    music.play();
+    playing = true;
+    document.querySelector(".music-btn").innerText = "⏸ Остановить музыку";
+  } else {
+    music.pause();
+    playing = false;
+    document.querySelector(".music-btn").innerText = "🎵 Включить музыку";
+  }
+}
+</script>
 </body>
 </html>
