@@ -266,13 +266,23 @@ input,select,textarea{
 .frame {
   width: 170px;
   height: 220px;
-  padding: 8px;
-  border-radius: 24px;
-  background: linear-gradient(135deg, #7A1F2B, #E3C3A8);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  padding: 4px;
+  border-radius: 26px;
+  background: linear-gradient(135deg, #E3C3A8, #7A1F2B, #E3C3A8);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.35);
   margin: auto;
   overflow: hidden;
   transition: 0.5s ease;
+}
+
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+  background: linear-gradient(135deg, #FFD6A5, #7A1F2B, #E3C3A8);
+  opacity: 0.6;
+  z-index: -1;
 }
 
 .frame img {
@@ -351,25 +361,56 @@ input,select,textarea{
   border-radius: 0;
   margin: 0;
 }
-/* ===== DECORATIVE DIVIDER ===== */
+/* ===== PREMIUM DIVIDER NO BACKGROUND ===== */
 .divider {
-  width: 120px;
-  height: 2px;
-  margin: 35px auto;
+  width: 140px;
+  height: 1px;
+  margin: 45px auto;
   background: linear-gradient(90deg, transparent, #E3C3A8, transparent);
   position: relative;
 }
 
 .divider::before {
-  content: "✦";
+  content: "❦";
   position: absolute;
   top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 18px;
+  font-size: 26px;
   color: #E3C3A8;
-  background: #fff;
-  padding: 0 8px;
+  background: transparent;
+}
+
+/* ===== HERO NAMES BEAUTIFUL ALIGN ===== */
+.hero-names {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  color: white;
+  text-align: center;
+}
+
+.hero-names .amp {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-style: italic;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+/* адаптация для телефонов */
+@media (max-width: 480px) {
+  .hero-names {
+    font-size: 34px;
+  }
+
+  .hero-names .amp {
+    font-size: 38px;
+  }
 }
 
 </style>
@@ -385,7 +426,7 @@ input,select,textarea{
 </div>
 
 <!-- Music -->
-<div class="music-btn" onclick="toggleMusic()" id="musicBtn">🎵 Включить музыку</div>
+<div class="music-btn" onclick="toggleMusic()" id="musicBtn">Включить музыку</div>
 <audio id="bgMusic" loop>
   <source src="music/song.mp3" type="audio/mpeg">
 </audio>
@@ -395,7 +436,11 @@ input,select,textarea{
 <!-- HERO -->
 <div class="hero">
   <div class="hero-content">
-    <h1>Марсель & Рухсора</h1>
+    <div class="hero-names">
+  <span class="name-left">Марсель</span>
+  <span class="amp">&</span>
+  <span class="name-right">Рухсора</span>
+</div>
     <div class="phrase" id="phrase"></div>
     <div id="heroDate">11 апреля 2026</div>
   </div>
@@ -513,7 +558,7 @@ const texts = {
     foodTitle:"Предпочтения по еде",
     alcoholTitle:"Алкоголь",
     childTitle:"Будет ли с вами ребёнок?",
-    musicTitle:"🎵 Какую музыку вы хотели бы услышать?",
+    musicTitle:"Какую музыку вы хотели бы услышать?",
     name:"Ваше имя",
     send:"Отправить",
     status:["Я приду","К сожалению, не смогу"],
@@ -537,7 +582,7 @@ const texts = {
     foodTitle:"Ovqat bo‘yicha",
     alcoholTitle:"Ichimliklar",
     childTitle:"Bola bilan kelasizmi?",
-    musicTitle:"🎵 Qaysi musiqani eshitishni xohlaysiz?",
+    musicTitle:"Qaysi musiqani eshitishni xohlaysiz?",
     name:"Ismingiz",
     send:"Yuborish",
     status:["Kelaman","Kela olmayman"],
@@ -561,7 +606,7 @@ const texts = {
     foodTitle:"Food preferences",
     alcoholTitle:"Drinks",
     childTitle:"Will you come with a child?",
-    musicTitle:"🎵 What music would you like to hear?",
+    musicTitle:"What music would you like to hear?",
     name:"Your name",
     send:"Send",
     status:["I will attend","Unfortunately, I can't"],
@@ -633,12 +678,12 @@ function toggleMusic() {
       playing = true;
       musicBtn.innerText = "⏸ Остановить музыку";
     }).catch(() => {
-      alert("Нажмите ещё раз, чтобы включить музыку 🎵");
+      alert("Нажмите ещё раз, чтобы включить музыку");
     });
   } else {
     music.pause();
     playing = false;
-    musicBtn.innerText = "🎵 Включить музыку";
+    musicBtn.innerText = "Включить музыку";
   }
 }
 </script>
