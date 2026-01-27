@@ -362,6 +362,26 @@ function fillSelect(select,arr){
 
 setLang(localStorage.getItem("lang") || "ru");
 </script>
+<script>
+let playing = false;
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+function toggleMusic() {
+  if (!playing) {
+    music.play().then(() => {
+      playing = true;
+      musicBtn.innerText = "⏸ Остановить музыку";
+    }).catch(() => {
+      alert("Нажмите ещё раз, чтобы включить музыку 🎵");
+    });
+  } else {
+    music.pause();
+    playing = false;
+    musicBtn.innerText = "🎵 Включить музыку";
+  }
+}
+</script>
 
 </body>
 </html>
