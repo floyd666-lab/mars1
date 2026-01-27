@@ -715,7 +715,7 @@ function toggleMusic() {
   if (!playing) {
     music.play().then(() => {
       playing = true;
-      musicBtn.innerText = "⏸ Остановить музыку";
+      musicBtn.innerText = "Остановить музыку";
     }).catch(() => {
       alert("Нажмите ещё раз, чтобы включить музыку");
     });
