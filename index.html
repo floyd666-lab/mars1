@@ -195,10 +195,26 @@ input,select,textarea{
 
 .person {
   text-align: center;
-  opacity: 1;
-  transform: none;
+  opacity: 0;
+  transform: translateY(40px);
   transition: 0.8s ease;
 }
+
+/* Появление при скролле */
+.section.visible .person {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Задержка: сначала жених, потом невеста */
+.section.visible .person:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.section.visible .person:nth-child(2) {
+  transition-delay: 0.4s;
+}
+
 
 .section.visible .person {
   opacity: 1;
