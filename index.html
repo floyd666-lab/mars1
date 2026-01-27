@@ -15,15 +15,37 @@
 }
 
 body {
-  margin:0;
-  font-family:'Montserrat', sans-serif;
-  background:#fff;
-  color:#222;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(180deg, #6f0f1c 0%, #8a1c2c 40%, #6f0f1c 100%);
+  color: #222;
+  min-height: 100vh;
 }
 
-.container {max-width:420px;margin:auto;}
-.section {padding:60px 24px;text-align:center;}
-.title {font-family:'Playfair Display';font-size:24px;color:var(--wine);margin-bottom:20px;}
+
+.container {
+  max-width: 420px;
+  margin: auto;
+  padding-bottom: 60px;
+}
+.section {
+  padding: 60px 24px;
+  text-align: center;
+
+  background: #f8f2ef;          /* светлый фон блока */
+  margin: 30px 16px;
+  border-radius: 24px;
+
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+}
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  color: #7A1F2B;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
 
 .hero {
   height:100vh;
@@ -325,6 +347,30 @@ input,select,textarea{
   opacity: 1;
   transform: translateY(0);
 }
+.hero {
+  border-radius: 0;
+  margin: 0;
+}
+/* ===== DECORATIVE DIVIDER ===== */
+.divider {
+  width: 120px;
+  height: 2px;
+  margin: 35px auto;
+  background: linear-gradient(90deg, transparent, #E3C3A8, transparent);
+  position: relative;
+}
+
+.divider::before {
+  content: "✦";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  color: #E3C3A8;
+  background: #fff;
+  padding: 0 8px;
+}
 
 </style>
 </head>
@@ -366,6 +412,7 @@ input,select,textarea{
     <img src="photos/photo4.jpg">
   </div>
 </div>
+  <div class="divider"></div>
 
   <!-- COUPLE PREMIUM -->
 <div class="section couple-section">
@@ -389,13 +436,13 @@ input,select,textarea{
     </div>
   </div>
 </div>
-  
+  <div class="divider"></div>
 <!-- GIFTS -->
 <div class="section">
   <div class="title" id="giftsTitle"></div>
   <p id="giftsText"></p>
 </div>
-
+<div class="divider"></div>
 <!-- DRESS CODE -->
 <div class="section">
   <div class="title" id="dressTitle"></div>
@@ -407,14 +454,14 @@ input,select,textarea{
     <div class="color" style="background:red"></div>
   </div>
 </div>
-
+<div class="divider"></div>
 <!-- SCHEDULE -->
 <div class="section">
   <div class="title" id="scheduleTitle"></div>
   <p id="schedule1"></p>
   <p id="schedule2"></p>
 </div>
-
+<div class="divider"></div>
 <!-- MAP -->
 <div class="section">
   <div class="title" id="mapTitle"></div>
@@ -423,7 +470,7 @@ input,select,textarea{
     <iframe src="https://www.google.com/maps?q=Diamond+Hall+Tashkent&output=embed"></iframe>
   </div>
 </div>
-
+<div class="divider"></div>
 <!-- FORM -->
 <div class="section">
   <div class="title" id="confirmTitle"></div>
