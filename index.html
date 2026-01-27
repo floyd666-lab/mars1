@@ -1,391 +1,184 @@
+<!-- 🔥 ПОЛНЫЙ ПРЕМИУМ ШАБЛОН С БЛОКАМИ, ФОРМОЙ И МУЗЫКОЙ -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Марсель & Рухсора</title>
-
 <meta name="robots" content="noindex, nofollow">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --wine: #7A1F2B;
-  --wine-light: #9a3a46;
-  --text: #222;
+  --wine:#7A1F2B;
+  --wine-light:#9a3a46;
 }
 
-* { box-sizing: border-box; }
+body {margin:0;font-family:Inter,sans-serif;background:#fff;color:#222;}
+.container {max-width:420px;margin:auto;}
 
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: #fff;
-  color: var(--text);
-  display: flex;
-  justify-content: center;
-}
+.section {padding:60px 24px;text-align:center;}
+.title {font-size:22px;color:var(--wine);margin-bottom:20px;}
 
-.container {
-  max-width: 420px;
-  width: 100%;
-}
-  
-
-/* Language */
-.lang {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 10;
-  display: flex;
-  gap: 10px;
-  font-size: 14px;
-}
-
-.lang span {
-  cursor: pointer;
-  color: white;
-  opacity: 0.7;
-  transition: 0.3s;
-}
-
-.lang span:hover {
-  opacity: 1;
-}
-
-/* HERO */
 .hero {
-  height: 100vh;
-  background-image: url("photos/main.jpg");
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height:100vh;
+  background:url("photos/main.jpg") center/cover no-repeat;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.4);}
+.hero-content{position:relative;color:white;text-align:center;}
+.hero h1{font-family:'Playfair Display';font-size:36px;}
+.phrase{font-size:20px;margin:15px 0;}
+
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.gallery img{width:100%;border-radius:16px;aspect-ratio:3/4;object-fit:cover;}
+
+.couple{display:flex;justify-content:space-around;gap:20px;}
+.couple div{text-align:center;}
+.couple img{width:140px;height:140px;border-radius:50%;object-fit:cover;}
+
+.colors{display:flex;justify-content:center;gap:15px;}
+.color{width:40px;height:40px;border-radius:50%;}
+
+input,select,textarea{
+  width:100%;padding:12px;margin-top:10px;border-radius:10px;border:1px solid #ccc;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-}
-
-.hero-content {
-  position: relative;
-  text-align: center;
-  color: white;
-  padding: 20px;
-  animation: fadeUp 1.5s ease forwards;
-}
-
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 38px;
-  margin-bottom: 12px;
-}
-
-.hero .line {
-  width: 60px;
-  height: 2px;
-  background: white;
-  margin: 15px auto;
-  opacity: 0.7;
-}
-
-.hero .phrase {
-  font-size: 20px;
-  font-weight: 300;
-  margin-bottom: 15px;
-}
-
-.hero .date {
-  font-size: 16px;
-  opacity: 0.8;
-}
-
-/* Section */
-.section {
-  padding: 60px 24px;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 0.8s ease;
-}
-
-.section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.title {
-  font-size: 22px;
-  color: var(--wine);
-  margin-bottom: 12px;
-}
-
-/* Timer */
-.timer {
-  font-size: 26px;
-  font-weight: 500;
-}
-
-/* Button */
-.button {
-  margin-top: 20px;
-  background: linear-gradient(135deg, var(--wine), var(--wine-light));
-  color: white;
-  border: none;
-  padding: 14px 26px;
-  border-radius: 30px;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(122,31,43,0.3);
-}
-
-/* Form */
-input, select {
-  width: 100%;
-  padding: 14px;
-  margin-top: 12px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  font-size: 15px;
-}
-
-.thanks {
-  margin-top: 15px;
-  color: var(--wine);
-  display: none;
-  font-weight: 500;
-}
-
-/* Animation */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-  /* Gallery */
-.gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.gallery img {
-  width: 100%;
-  border-radius: 16px;
-  object-fit: cover;
-  aspect-ratio: 3 / 4;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 0.8s ease;
-}
-
-.section.visible .gallery img {
-  opacity: 1;
-  transform: translateY(0);
+.button{
+  margin-top:20px;
+  background:linear-gradient(135deg,var(--wine),var(--wine-light));
+  color:white;border:none;padding:14px 26px;border-radius:30px;font-size:16px;
 }
 
 </style>
 </head>
 
 <body>
-
-<!-- Language -->
-<div class="lang">
-  <span onclick="setLang('ru')">RU</span>
-  <span onclick="setLang('uz')">UZ</span>
-  <span onclick="setLang('en')">EN</span>
-</div>
-
 <div class="container">
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-content">
-      <h1>Марсель & Рухсора</h1>
-      <div class="line"></div>
-      <div class="phrase" id="phrase">Разделите с нами самый счастливый день!</div>
-      <div class="date" id="herodate">11 апреля 2026</div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>Марсель & Рухсора</h1>
+    <div class="phrase">Разделите с нами самый счастливый день!</div>
+    <div>11 апреля 2026</div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="section">
+  <div class="title">Наша история</div>
+  <div class="gallery">
+    <img src="photos/photo1.jpg">
+    <img src="photos/photo2.jpg">
+    <img src="photos/photo3.jpg">
+    <img src="photos/photo4.jpg">
+  </div>
+</div>
+
+<!-- COUPLE -->
+<div class="section">
+  <div class="title">Жених и Невеста</div>
+  <div class="couple">
+    <div>
+      <img src="photos/groom.jpg">
+      <div>Жених</div>
+    </div>
+    <div>
+      <img src="photos/bride.jpg">
+      <div>Невеста</div>
     </div>
   </div>
+</div>
 
-  <!-- Details -->
-  <div class="section">
-    <div class="title" id="place">Ташкент, Diamond Hall</div>
+<!-- GIFTS -->
+<div class="section">
+  <div class="title">Пожелания по подаркам</div>
+  <p>
+    Самый ценный подарок для нас — ваше присутствие 💛  
+    Просим воздержаться от живых цветов.
+  </p>
+</div>
+
+<!-- DRESS CODE -->
+<div class="section">
+  <div class="title">Dress Code</div>
+  <p>Будем благодарны, если вы придержитесь этой палитры:</p>
+  <div class="colors">
+    <div class="color" style="background:#7A1F2B"></div>
+    <div class="color" style="background:#E3C3A8"></div>
+    <div class="color" style="background:black"></div>
+    <div class="color" style="background:red"></div>
   </div>
+</div>
 
-  <!-- Timer -->
-  <div class="section">
-    <div class="title" id="until">До свадьбы осталось</div>
-    <div class="timer" id="timer"></div>
-  </div>
+<!-- SCHEDULE -->
+<div class="section">
+  <div class="title">Расписание</div>
+  <p>19:00 — Регистрация</p>
+  <p>20:30 — Банкет</p>
+</div>
 
-  <!-- Map -->
-  <div class="section">
-    <button class="button" onclick="openMap()" id="mapbtn">Открыть карту</button>
-  </div>
+<!-- RSVP FORM -->
+<div class="section">
+  <div class="title">Подтвердите присутствие</div>
 
-  <!-- Invite -->
-  <div class="section">
-    <p id="invite">
-      Мы будем очень рады разделить с вами самый важный день в нашей жизни.
-    </p>
-  </div>
- <!-- Gallery -->
-  <div class="section">
-    <div class="title">Наша история</div>
+  <input id="name" placeholder="Ваше имя">
 
-    <div class="gallery">
-      <img src="photos/photo1.jpg" alt="">
-      <img src="photos/photo2.jpg" alt="">
-      <img src="photos/photo3.jpg" alt="">
-      <img src="photos/photo4.jpg" alt="">
-    </div>
-  </div>
-  <!-- RSVP -->
-  <div class="section">
-    <div class="title" id="confirm">Подтвердите присутствие</div>
+  <select id="status">
+    <option value="Приду">Я приду</option>
+    <option value="Не приду">К сожалению, не смогу</option>
+  </select>
 
-    <input type="text" id="guestName" placeholder="Ваше имя">
+  <h4>Предпочтения по еде</h4>
+  <select id="food">
+    <option>Без ограничений</option>
+    <option>Не ем мясо</option>
+    <option>Не ем рыбу</option>
+    <option>Вегетарианец</option>
+  </select>
 
-    <select id="status">
-      <option value="yes">Я приду</option>
-      <option value="no">К сожалению, не смогу</option>
-    </select>
+  <h4>Алкоголь</h4>
+  <select id="alcohol">
+    <option>Красное вино</option>
+    <option>Белое вино</option>
+    <option>Шампанское</option>
+    <option>Виски / Коньяк</option>
+    <option>Водка</option>
+    <option>Не пью алкоголь</option>
+  </select>
 
-    <button class="button" onclick="sendForm()" id="sendbtn">Отправить</button>
+  <h4>Будет ли с вами ребёнок?</h4>
+  <select id="child">
+    <option>Нет</option>
+    <option>Да</option>
+  </select>
 
-    <div class="thanks" id="thanks">Спасибо за ответ!</div>
-  </div>
+  <h4>🎵 Какую музыку вы хотели бы услышать?</h4>
+  <textarea id="music" placeholder="Исполнитель / песня / жанр"></textarea>
+
+  <button class="button" onclick="sendForm()">Отправить</button>
+</div>
 
 </div>
 
 <script>
-// Scroll animation
-const sections = document.querySelectorAll('.section');
-window.addEventListener('scroll', () => {
-  const trigger = window.innerHeight * 0.85;
-  sections.forEach(sec => {
-    if (sec.getBoundingClientRect().top < trigger) {
-      sec.classList.add('visible');
-    }
-  });
-});
-
-// Languages
-const texts = {
-  ru: {
-    phrase: "Разделите с нами самый счастливый день!",
-    place: "Ташкент, Diamond Hall",
-    until: "До свадьбы осталось",
-    mapbtn: "Открыть карту",
-    invite: "Мы будем очень рады разделить с вами самый важный день в нашей жизни.",
-    confirm: "Подтвердите присутствие",
-    nameph: "Ваше имя",
-    yes: "Я приду",
-    no: "К сожалению, не смогу",
-    send: "Отправить",
-    thanks: "Спасибо за ответ!"
-  },
-  uz: {
-    phrase: "Hayotimizdagi eng baxtli kunni biz bilan birga o‘tkazing!",
-    place: "Toshkent, Diamond Hall",
-    until: "To‘yga qolgan vaqt",
-    mapbtn: "Xaritani ochish",
-    invite: "Hayotimizdagi eng muhim kunni siz bilan birga nishonlashdan juda xursand bo‘lamiz.",
-    confirm: "Ishtirokingizni tasdiqlang",
-    nameph: "Ismingiz",
-    yes: "Kelaman",
-    no: "Afsuski, kela olmayman",
-    send: "Yuborish",
-    thanks: "Javobingiz uchun rahmat!"
-  },
-  en: {
-    phrase: "Share with us the happiest day of our lives!",
-    place: "Tashkent, Diamond Hall",
-    until: "Time left until the wedding",
-    mapbtn: "Open map",
-    invite: "We would be very happy to share the most important day of our lives with you.",
-    confirm: "Please confirm your attendance",
-    nameph: "Your name",
-    yes: "I will attend",
-    no: "Unfortunately, I can't attend",
-    send: "Send",
-    thanks: "Thank you for your response!"
-  }
-};
-
-function setLang(lang) {
-  document.getElementById("phrase").innerText = texts[lang].phrase;
-  document.getElementById("place").innerText = texts[lang].place;
-  document.getElementById("until").innerText = texts[lang].until;
-  document.getElementById("mapbtn").innerText = texts[lang].mapbtn;
-  document.getElementById("invite").innerText = texts[lang].invite;
-  document.getElementById("confirm").innerText = texts[lang].confirm;
-  document.getElementById("guestName").placeholder = texts[lang].nameph;
-  document.getElementById("status").options[0].text = texts[lang].yes;
-  document.getElementById("status").options[1].text = texts[lang].no;
-  document.getElementById("sendbtn").innerText = texts[lang].send;
-  document.getElementById("thanks").innerText = texts[lang].thanks;
-}
-
-// Timer
-const weddingDate = new Date("2026-04-11T18:00:00");
-
-function updateTimer() {
-  const now = new Date();
-  const diff = weddingDate - now;
-
-  if (diff <= 0) {
-    document.getElementById("timer").innerText = "Сегодня свадьба! 🎉";
-    return;
-  }
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-
-  document.getElementById("timer").innerText =
-    `${days} дн. ${hours} ч. ${minutes} мин.`;
-}
-
-setInterval(updateTimer, 60000);
-updateTimer();
-
-// Map
-function openMap() {
-  window.open("https://www.google.com/maps/search/Diamond+Hall+Tashkent", "_blank");
-}
-
-// FORM — ВСТАВЬ СЮДА СВОЮ ССЫЛКУ GOOGLE SCRIPT
-function sendForm() {
-  const name = document.getElementById("guestName").value;
-  const status = document.getElementById("status").value;
-
-  if (!name) {
-    alert("Введите имя");
-    return;
-  }
-
-  fetch("ВСТАВЬ_СЮДА_СВОЮ_ССЫЛКУ_GOOGLE_SCRIPT", {
-    method: "POST",
-    body: JSON.stringify({
-      name: name,
-      status: status === "yes" ? "Приду" : "Не приду"
+function sendForm(){
+  fetch("ВСТАВЬ_СЮДА_ССЫЛКУ_GOOGLE_SCRIPT",{
+    method:"POST",
+    body:JSON.stringify({
+      name:document.getElementById("name").value,
+      status:document.getElementById("status").value,
+      food:document.getElementById("food").value,
+      alcohol:document.getElementById("alcohol").value,
+      child:document.getElementById("child").value,
+      music:document.getElementById("music").value
     })
-  })
-  .then(() => {
-    document.getElementById("thanks").style.display = "block";
-  })
-  .catch(() => {
-    alert("Ошибка отправки. Попробуйте ещё раз.");
-  });
+  }).then(()=>alert("Спасибо! Ответ сохранён ❤️"));
 }
 </script>
 
