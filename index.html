@@ -31,6 +31,7 @@ body {
   max-width: 420px;
   width: 100%;
 }
+  
 
 /* Language */
 .lang {
@@ -167,6 +168,29 @@ input, select {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
 }
+  /* Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.8s ease;
+}
+
+.section.visible .gallery img {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 </style>
 </head>
 
