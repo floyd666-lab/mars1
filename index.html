@@ -159,18 +159,18 @@ input,select,textarea{
 .map-box iframe {width:100%;height:280px;border:none;}
 
 .music-btn {
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:rgba(122,31,43,0.9);
-  color:white;
-  padding:12px 18px;
-  border-radius:30px;
-  font-size:14px;
-  cursor:pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   z-index: 999999;
-  pointer-events: auto;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  user-select: none;
 }
+
 
 .lang-switch {
   position:fixed;
@@ -1422,6 +1422,12 @@ function toggleStory(section) {
   section.classList.toggle("open");
 }
 </script>
+<!-- Music -->
+<div id="musicBtn" class="music-btn">Включить музыку</div>
 
+<audio id="bgMusic" preload="auto" loop>
+  <source src="music/song.mp3" type="audio/mpeg">
+</audio>
+  <script src="music.js"></script>
 </body>
 </html>
