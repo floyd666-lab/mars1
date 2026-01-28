@@ -1390,13 +1390,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
-<!-- Music -->
-<div class="music-btn" id="musicBtn">Включить музыку</div>
-<audio id="bgMusic" loop>
-  <source src="music/song.mp3" type="audio/mpeg">
-</audio>
-
-
 <script>
 const weddingDate = new Date("2026-04-11T19:00:00").getTime();
 
@@ -1428,28 +1421,6 @@ setInterval(updateCountdown, 1000);
 function toggleStory(section) {
   section.classList.toggle("open");
 }
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("musicBtn");
-  const audio = document.getElementById("bgMusic");
-
-  if (!btn || !audio) {
-    console.error("Music elements not found");
-    return;
-  }
-
-  btn.addEventListener("click", () => {
-    if (audio.paused) {
-      audio.volume = 0.8;
-      audio.play();
-      btn.innerText = "Остановить музыку";
-    } else {
-      audio.pause();
-      btn.innerText = "Включить музыку";
-    }
-  });
-});
 </script>
 
 </body>
