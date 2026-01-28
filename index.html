@@ -1343,11 +1343,38 @@ function closeThank() {
 }
 </script>
 <!-- Music -->
-<div class="music-btn" id="musicBtn">Включить музыку</div>
-<audio id="bgMusic" loop>
-  <source src="music/song.mp3" type="audio/mpeg">
-</audio>
+<script>
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
 
+let isPlaying = false;
+
+/* ⬇️ КЛЮЧЕВОЙ ХАК */
+function unlockAudio() {
+  music.play().then(() => {
+    music.pause();
+    music.currentTime = 0;
+  }).catch(() => {});
+}
+
+/* разблокируем аудио при первом касании страницы */
+document.addEventListener("click", unlockAudio, { once: true });
+document.addEventListener("touchstart", unlockAudio, { once: true });
+
+musicBtn.addEventListener("click", () => {
+  if (!isPlaying) {
+    music.volume = 0.8;
+    music.play().then(() => {
+      isPlaying = true;
+      musicBtn.innerText = "Остановить музыку";
+    });
+  } else {
+    music.pause();
+    isPlaying = false;
+    musicBtn.innerText = "Включить музыку";
+  }
+});
+</script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
