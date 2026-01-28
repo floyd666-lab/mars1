@@ -1342,7 +1342,7 @@ function closeThank() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 </script>
-  <!-- Music -->
+<!-- Music -->
 <div class="music-btn" id="musicBtn">Включить музыку</div>
 <audio id="bgMusic" loop>
   <source src="music/song.mp3" type="audio/mpeg">
@@ -1355,16 +1355,12 @@ const musicBtn = document.getElementById("musicBtn");
 let isPlaying = false;
 
 musicBtn.addEventListener("click", () => {
-  if (!isPlaying) {
+  if (!isPlaying) {                 // ← ВОТ ГЛАВНЫЙ ФИКС
     music.volume = 0.8;
-    music.play()
-      .then(() => {
-        isPlaying = true;
-        musicBtn.innerText = "Остановить музыку";
-      })
-      .catch(err => {
-        console.log("Music blocked:", err);
-      });
+    music.play().then(() => {
+      isPlaying = true;
+      musicBtn.innerText = "Остановить музыку";
+    });
   } else {
     music.pause();
     isPlaying = false;
@@ -1372,6 +1368,7 @@ musicBtn.addEventListener("click", () => {
   }
 });
 </script>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
