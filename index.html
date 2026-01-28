@@ -608,6 +608,14 @@ input,select,textarea{
 <audio id="bgMusic" loop>
   <source src="music/song.mp3" type="audio/mpeg">
 </audio>
+  <script>
+let playing = false;
+let musicStarted = false;
+
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+</script>
+
 
 <div class="container">
 <!-- HERO -->
@@ -860,42 +868,44 @@ function setLang(lang){
 
   document.querySelectorAll(".lang-switch span").forEach(el=>el.classList.remove("active"));
   document.getElementById("lang-"+lang).classList.add("active");
-document.getElementById("countdownTitle").innerText = t.countdownTitle;
-document.getElementById("daysLabel").innerText = t.daysLabel;
-document.getElementById("hoursLabel").innerText = t.hoursLabel;
-document.getElementById("minutesLabel").innerText = t.minutesLabel;
-document.getElementById("secondsLabel").innerText = t.secondsLabel;
-document.getElementById("coupleTitle").innerText = t.coupleTitle;
-document.getElementById("groomRole").innerText = t.groomRole;
-document.getElementById("brideRole").innerText = t.brideRole;
 
+  const t = texts[lang]; // ← ПЕРВЫМ ДЕЛОМ
 
-  const t = texts[lang];
+  phrase.innerText = t.phrase;
+  storyTitle.innerText = t.storyTitle;
+  giftsTitle.innerText = t.giftsTitle;
+  giftsText.innerText = t.giftsText;
+  dressTitle.innerText = t.dressTitle;
+  dressText.innerText = t.dressText;
+  scheduleTitle.innerText = t.scheduleTitle;
+  schedule1.innerText = t.schedule1;
+  schedule2.innerText = t.schedule2;
+  mapTitle.innerText = t.mapTitle;
+  mapPlace.innerText = t.mapPlace;
+  confirmTitle.innerText = t.confirmTitle;
+  foodTitle.innerText = t.foodTitle;
+  alcoholTitle.innerText = t.alcoholTitle;
+  childTitle.innerText = t.childTitle;
+  musicTitle.innerText = t.musicTitle;
+  name.placeholder = t.name;
+  sendBtn.innerText = t.send;
 
-  phrase.innerText=t.phrase;
-  storyTitle.innerText=t.storyTitle;
-  giftsTitle.innerText=t.giftsTitle;
-  giftsText.innerText=t.giftsText;
-  dressTitle.innerText=t.dressTitle;
-  dressText.innerText=t.dressText;
-  scheduleTitle.innerText=t.scheduleTitle;
-  schedule1.innerText=t.schedule1;
-  schedule2.innerText=t.schedule2;
-  mapTitle.innerText=t.mapTitle;
-  mapPlace.innerText=t.mapPlace;
-  confirmTitle.innerText=t.confirmTitle;
-  foodTitle.innerText=t.foodTitle;
-  alcoholTitle.innerText=t.alcoholTitle;
-  childTitle.innerText=t.childTitle;
-  musicTitle.innerText=t.musicTitle;
-  name.placeholder=t.name;
-  sendBtn.innerText=t.send;
+  coupleTitle.innerText = t.coupleTitle;
+  groomRole.innerText = t.groomRole;
+  brideRole.innerText = t.brideRole;
+
+  countdownTitle.innerText = t.countdownTitle;
+  daysLabel.innerText = t.daysLabel;
+  hoursLabel.innerText = t.hoursLabel;
+  minutesLabel.innerText = t.minutesLabel;
+  secondsLabel.innerText = t.secondsLabel;
 
   fillSelect(status,t.status);
   fillSelect(food,t.food);
   fillSelect(alcohol,t.alcohol);
   fillSelect(child,t.child);
 }
+
 
 function fillSelect(select,arr){
   select.innerHTML="";
@@ -910,8 +920,6 @@ setLang(localStorage.getItem("lang") || "ru");
 </script>
 <script>
 let playing = false;
-const music = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
 
 function toggleMusic() {
   if (!playing) {
