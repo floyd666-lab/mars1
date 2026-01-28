@@ -900,12 +900,7 @@ input,select,textarea{
 <audio id="bgMusic" loop>
   <source src="music/song.mp3" type="audio/mpeg">
 </audio>
-  <script>
-let playing = false;
-let musicStarted = false;
-
-const music = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
+  
 </script>
 
 
@@ -1351,6 +1346,37 @@ function closeThank() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 </script>
+  <!-- Music -->
+<div class="music-btn" id="musicBtn">Включить музыку</div>
+<audio id="bgMusic" loop>
+  <source src="music/song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+let isPlaying = false;
+
+musicBtn.addEventListener("click", () => {
+  if (!isPlaying) {
+    music.volume = 0.8;
+    music.play()
+      .then(() => {
+        isPlaying = true;
+        musicBtn.innerText = "Остановить музыку";
+      })
+      .catch(err => {
+        console.log("Music blocked:", err);
+      });
+  } else {
+    music.pause();
+    isPlaying = false;
+    musicBtn.innerText = "Включить музыку";
+  }
+});
+</script>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -1379,51 +1405,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<script>
-let musicStarted = false;
-const music = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
-
-</script>
-<script>
-let musicStarted = false;
-const music = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
-
-function startMusicOnce() {
-  if (musicStarted) return;
-
-  music.volume = 0;
-  music.play().then(() => {
-    musicStarted = true;
-    fadeInMusic();
-    musicBtn.innerText = "Остановить музыку";
-
-    // после запуска убираем обработчики
-    document.removeEventListener("touchstart", startMusicOnce);
-    document.removeEventListener("click", startMusicOnce);
-  }).catch(() => {
-    // если браузер вдруг отказал — ничего не делаем
-  });
-}
-
-// ЛЮБОЕ ПЕРВОЕ КАСАНИЕ ИЛИ КЛИК
-document.addEventListener("touchstart", startMusicOnce, { once: true });
-document.addEventListener("click", startMusicOnce, { once: true });
-
-// плавное появление громкости
-function fadeInMusic() {
-  let volume = 0;
-  const fade = setInterval(() => {
-    if (volume < 1) {
-      volume += 0.02;
-      music.volume = volume;
-    } else {
-      clearInterval(fade);
-    }
-  }, 100);
-}
-</script>
 <script>
 const weddingDate = new Date("2026-04-11T19:00:00").getTime();
 
