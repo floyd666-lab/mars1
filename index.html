@@ -1236,25 +1236,7 @@ function fillSelect(select,arr){
 
 setLang(localStorage.getItem("lang") || "ru");
 </script>
-<script>
-const music = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
 
-let isPlaying = false;
-
-musicBtn.addEventListener("click", () => {
-  if (!isPlaying) {
-    music.volume = 0.8;
-    music.play();
-    isPlaying = true;
-    musicBtn.innerText = "Остановить музыку";
-  } else {
-    music.pause();
-    isPlaying = false;
-    musicBtn.innerText = "Включить музыку";
-  }
-});
-</script>
 
 <!-- THANK YOU OVERLAY -->
 <div class="thank-overlay" id="thankOverlay">
@@ -1380,21 +1362,6 @@ function closeThank() {
 }
 </script>
 <!-- Music -->
-<script>
-const btn = document.getElementById("musicBtn");
-const audio = document.getElementById("bgMusic");
-
-btn.onclick = () => {
-  if (audio.paused) {
-    audio.volume = 0.8;
-    audio.play();
-    btn.innerText = "Остановить музыку";
-  } else {
-    audio.pause();
-    btn.innerText = "Включить музыку";
-  }
-};
-</script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -1429,26 +1396,6 @@ document.addEventListener("DOMContentLoaded", () => {
   <source src="music/song.mp3" type="audio/mpeg">
 </audio>
 
-<script>
-const music = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
-
-let isPlaying = false;
-
-musicBtn.addEventListener("click", () => {
-  if (!isPlaying) {
-    music.volume = 0.8;
-    music.play().then(() => {
-      isPlaying = true;
-      musicBtn.innerText = "Остановить музыку";
-    });
-  } else {
-    music.pause();
-    isPlaying = false;
-    musicBtn.innerText = "Включить музыку";
-  }
-});
-</script>
 
 <script>
 const weddingDate = new Date("2026-04-11T19:00:00").getTime();
@@ -1481,6 +1428,28 @@ setInterval(updateCountdown, 1000);
 function toggleStory(section) {
   section.classList.toggle("open");
 }
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("musicBtn");
+  const audio = document.getElementById("bgMusic");
+
+  if (!btn || !audio) {
+    console.error("Music elements not found");
+    return;
+  }
+
+  btn.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.volume = 0.8;
+      audio.play();
+      btn.innerText = "Остановить музыку";
+    } else {
+      audio.pause();
+      btn.innerText = "Включить музыку";
+    }
+  });
+});
 </script>
 
 </body>
