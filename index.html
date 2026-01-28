@@ -1349,28 +1349,6 @@ function closeThank() {
 </audio>
 
 <script>
-const music = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
-
-let isPlaying = false;
-
-musicBtn.addEventListener("click", () => {
-  if (!isPlaying) {                 // ← ВОТ ГЛАВНЫЙ ФИКС
-    music.volume = 0.8;
-    music.play().then(() => {
-      isPlaying = true;
-      musicBtn.innerText = "Остановить музыку";
-    });
-  } else {
-    music.pause();
-    isPlaying = false;
-    musicBtn.innerText = "Включить музыку";
-  }
-});
-</script>
-
-
-<script>
 document.addEventListener("DOMContentLoaded", () => {
 
   const sections = document.querySelectorAll(".section");
