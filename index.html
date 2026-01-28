@@ -452,6 +452,144 @@ input,select,textarea{
     font-size: 16px;
   }
 }
+/* ===== WEDDING COUNTDOWN ===== */
+.countdown {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  color: #fff;
+}
+
+.time-box {
+  min-width: 64px;
+  padding: 12px 10px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  text-align: center;
+}
+
+.time-box span {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.time-box small {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+/* мобильная адаптация */
+@media (max-width: 480px) {
+  .time-box {
+    min-width: 54px;
+    padding: 10px 8px;
+  }
+
+  .time-box span {
+    font-size: 22px;
+  }
+}
+/* ===== COUNTDOWN WRAP ===== */
+.countdown-wrap {
+  margin-top: 24px;
+}
+
+/* ===== COUNTDOWN TITLE ===== */
+.countdown-title {
+  margin-bottom: 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+  opacity: 0.9;
+  color: #fff;
+}
+
+/* ===== COUNTDOWN GRID ===== */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  color: #fff;
+}
+
+/* ===== TIME BOX ===== */
+.time-box {
+  min-width: 64px;
+  padding: 12px 10px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  text-align: center;
+}
+
+/* ===== DIGITS ===== */
+.time-box span {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ===== LABELS ===== */
+.time-box small {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  opacity: 0.75;
+}
+
+/* ===== FLIP ANIMATION ===== */
+.flip {
+  display: inline-block;
+  animation: none;
+  transform-origin: center;
+}
+
+.flip.animate {
+  animation: flip 0.45s ease;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: rotateX(90deg);
+    opacity: 0.4;
+  }
+  100% {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 480px) {
+  .time-box {
+    min-width: 54px;
+    padding: 10px 8px;
+  }
+
+  .time-box span {
+    font-size: 22px;
+  }
+
+  .countdown-title {
+    font-size: 18px;
+  }
+}
 
 </style>
 </head>
@@ -472,19 +610,46 @@ input,select,textarea{
 </audio>
 
 <div class="container">
-
 <!-- HERO -->
 <div class="hero">
   <div class="hero-content">
+
     <div class="hero-names">
-  <span class="name-left">Марсель</span>
-  <span class="amp">&</span>
-  <span class="name-right">Рухсора</span>
-</div>
+      <span class="name-left">Марсель</span>
+      <span class="amp">&</span>
+      <span class="name-right">Рухсора</span>
+    </div>
+
     <div class="phrase" id="phrase"></div>
     <div id="heroDate">11 апреля 2026</div>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown-wrap">
+      <div class="countdown-title" id="countdownTitle"></div>
+
+      <div class="countdown" id="countdown">
+        <div class="time-box">
+          <span id="days" class="flip">00</span>
+          <small id="daysLabel"></small>
+        </div>
+        <div class="time-box">
+          <span id="hours" class="flip">00</span>
+          <small id="hoursLabel"></small>
+        </div>
+        <div class="time-box">
+          <span id="minutes" class="flip">00</span>
+          <small id="minutesLabel"></small>
+        </div>
+        <div class="time-box">
+          <span id="seconds" class="flip">00</span>
+          <small id="secondsLabel"></small>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
+
 
 <!-- STORY -->
 <div class="section visible">
@@ -950,6 +1115,33 @@ function fadeInMusic() {
     }
   }, 100);
 }
+</script>
+<script>
+const weddingDate = new Date("2026-04-11T19:00:00").getTime();
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const diff = weddingDate - now;
+
+  if (diff <= 0) {
+    document.getElementById("countdown").innerHTML =
+      "<div style='font-size:18px;'>Сегодня наш день 🤍</div>";
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  document.getElementById("days").innerText = days;
+  document.getElementById("hours").innerText = String(hours).padStart(2, "0");
+  document.getElementById("minutes").innerText = String(minutes).padStart(2, "0");
+  document.getElementById("seconds").innerText = String(seconds).padStart(2, "0");
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
 </script>
 
 </body>
