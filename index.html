@@ -666,23 +666,23 @@ input,select,textarea{
 
   <!-- COUPLE PREMIUM -->
 <div class="section couple-section">
-  <div class="title">Жених и Невеста</div>
+  <div class="title" id="coupleTitle"></div>
 
   <div class="couple">
     <div class="person">
       <div class="frame">
-        <img src="photos/groom.jpg" alt="Жених">
+        <img src="photos/groom.jpg" alt="Groom">
       </div>
       <div class="name">Марсель</div>
-      <div class="role">Жених</div>
+      <div class="role" id="groomRole"></div>
     </div>
 
     <div class="person">
       <div class="frame">
-        <img src="photos/bride.jpg" alt="Невеста">
+        <img src="photos/bride.jpg" alt="Bride">
       </div>
       <div class="name">Рухсора</div>
-      <div class="role">Невеста</div>
+      <div class="role" id="brideRole"></div>
     </div>
   </div>
 </div>
@@ -748,6 +748,9 @@ input,select,textarea{
 <script>
 const texts = {
   ru: {
+coupleTitle: "Жених и невеста",
+groomRole: "Жених",
+brideRole: "Невеста",
     phrase:"Разделите с нами самый счастливый день!",
     storyTitle:"Наша история",
     giftsTitle:"Пожелания по подаркам",
@@ -770,8 +773,17 @@ const texts = {
     food:["Без ограничений","Не ем мясо","Не ем рыбу","Вегетарианец"],
     alcohol:["Красное вино","Белое вино","Шампанское","Виски / Коньяк","Водка","Не пью алкоголь"],
     child:["Нет","Да"]
+countdownTitle: "До свадьбы осталось",
+daysLabel: "дней",
+hoursLabel: "часов",
+minutesLabel: "минут",
+secondsLabel: "секунд",
+
   },
   uz: {
+coupleTitle: "Kuyov va kelin",
+groomRole: "Kuyov",
+brideRole: "Kelin",
     phrase:"Hayotimizdagi eng baxtli kunni biz bilan birga o‘tkazing!",
     storyTitle:"Bizning hikoyamiz",
     giftsTitle:"Sovg‘alar haqida",
@@ -794,8 +806,18 @@ const texts = {
     food:["Cheklov yo‘q","Go‘sht yemayman","Baliq yemayman","Vegetarian"],
     alcohol:["Qizil vino","Oq vino","Shampan","Viski / Konyak","Aroq","Ichmayman"],
     child:["Yo‘q","Ha"]
+countdownTitle: "To‘yimizgacha qoldi",
+daysLabel: "kun",
+hoursLabel: "soat",
+minutesLabel: "daqiqa",
+secondsLabel: "soniya",
+
   },
   en: {
+coupleTitle: "The couple",
+groomRole: "Groom",
+brideRole: "Bride",
+
     phrase:"Share with us the happiest day of our lives!",
     storyTitle:"Our Story",
     giftsTitle:"Gifts",
@@ -818,6 +840,12 @@ const texts = {
     food:["No limits","No meat","No fish","Vegetarian"],
     alcohol:["Red wine","White wine","Champagne","Whisky / Cognac","Vodka","No alcohol"],
     child:["No","Yes"]
+countdownTitle: "Time left until our wedding",
+daysLabel: "days",
+hoursLabel: "hours",
+minutesLabel: "minutes",
+secondsLabel: "seconds",
+
   }
 };
 // === form elements ===
@@ -833,6 +861,15 @@ function setLang(lang){
 
   document.querySelectorAll(".lang-switch span").forEach(el=>el.classList.remove("active"));
   document.getElementById("lang-"+lang).classList.add("active");
+document.getElementById("countdownTitle").innerText = t.countdownTitle;
+document.getElementById("daysLabel").innerText = t.daysLabel;
+document.getElementById("hoursLabel").innerText = t.hoursLabel;
+document.getElementById("minutesLabel").innerText = t.minutesLabel;
+document.getElementById("secondsLabel").innerText = t.secondsLabel;
+document.getElementById("coupleTitle").innerText = t.coupleTitle;
+document.getElementById("groomRole").innerText = t.groomRole;
+document.getElementById("brideRole").innerText = t.brideRole;
+
 
   const t = texts[lang];
 
