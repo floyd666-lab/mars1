@@ -69,24 +69,27 @@ body {
   align-items:center;
   filter: contrast(1.05) saturate(1.05);
 }
-.hero::before {
+/* 👇 ГРАДИЕНТ ТОЛЬКО ВНИЗУ ФОТО */
+.hero::after {
   content: "";
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
-  /* Плавный переход от фото к бардовому фону */
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,0.25) 0%,
-      rgba(0,0,0,0.35) 40%,
-      rgba(111,15,28,0.85) 80%,
-      #6f0f1c 100%
-    );
+  height: 40%; /* ← зона плавного перехода */
 
-  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(111, 15, 28, 0) 0%,
+    rgba(111, 15, 28, 0.6) 60%,
+    #6f0f1c 100%
+  );
+
+  pointer-events: none;
 }
-.hero-content{position:relative;color:white;text-align:center;}
+.hero-content{position:relative;color:white;text-align:center;position: relative;
+  z-index: 2;;}
 .hero h1{font-family:'Playfair Display';font-size:42px;}
 .phrase{font-family:'Cormorant Garamond';font-size:22px;font-style:italic;margin:15px 0;}
 
