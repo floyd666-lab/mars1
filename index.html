@@ -816,6 +816,17 @@ input,select,textarea{
   color: white;
   cursor: pointer;
 }
+/* ===== MUSIC INPUT FIX ===== */
+#music {
+  min-height: 48px;      /* как обычное поле */
+  max-height: 72px;      /* чтобы не разрасталось */
+  resize: none;          /* запрещаем растягивание */
+  font-family: 'Montserrat', sans-serif;
+}
+#music::placeholder {
+  color: #999;
+  font-size: 14px;
+}
 
 </style>
 </head>
@@ -983,7 +994,7 @@ const musicBtn = document.getElementById("musicBtn");
   <select id="child"></select>
 
   <h4 id="musicTitle"></h4>
-  <textarea id="music"></textarea>
+  <textarea id="music" placeholder="Трек / Исполнитель / Жанр"></textarea>
 
   <button class="button" id="sendBtn" onclick="sendForm()"></button>
 </div>
