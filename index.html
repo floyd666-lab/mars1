@@ -884,9 +884,6 @@ input,select,textarea{
   position: relative;
   margin-bottom: -2px; /* ⬅️ перекрываем стык */
 }
-.music-btn {
-  z-index: 999999;
-}
   .hero,
 .hero * {
   pointer-events: auto;
@@ -1382,37 +1379,21 @@ function closeThank() {
 </script>
 <!-- Music -->
 <script>
-const music = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
+const btn = document.getElementById("musicBtn");
+const audio = document.getElementById("bgMusic");
 
-let isPlaying = false;
-
-/* ⬇️ КЛЮЧЕВОЙ ХАК */
-function unlockAudio() {
-  music.play().then(() => {
-    music.pause();
-    music.currentTime = 0;
-  }).catch(() => {});
-}
-
-/* разблокируем аудио при первом касании страницы */
-document.addEventListener("click", unlockAudio, { once: true });
-document.addEventListener("touchstart", unlockAudio, { once: true });
-
-musicBtn.addEventListener("click", () => {
-  if (!isPlaying) {
-    music.volume = 0.8;
-    music.play().then(() => {
-      isPlaying = true;
-      musicBtn.innerText = "Остановить музыку";
-    });
+btn.onclick = () => {
+  if (audio.paused) {
+    audio.volume = 0.8;
+    audio.play();
+    btn.innerText = "Остановить музыку";
   } else {
-    music.pause();
-    isPlaying = false;
-    musicBtn.innerText = "Включить музыку";
+    audio.pause();
+    btn.innerText = "Включить музыку";
   }
-});
+};
 </script>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
