@@ -882,7 +882,9 @@ input,select,textarea{
   position: relative;
   margin-bottom: -2px; /* ⬅️ перекрываем стык */
 }
-
+.music-btn {
+  z-index: 999999;
+}
 </style>
 </head>
 
@@ -894,12 +896,6 @@ input,select,textarea{
   <span onclick="setLang('uz')" id="lang-uz">UZ</span>
   <span onclick="setLang('en')" id="lang-en">EN</span>
 </div>
-
-<!-- Music -->
-<div class="music-btn" onclick="toggleMusic()" id="musicBtn">Включить музыку</div>
-<audio id="bgMusic" loop>
-  <source src="music/song.mp3" type="audio/mpeg">
-</audio>
   
 </script>
 
@@ -1402,6 +1398,32 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(section);
   });
 
+});
+</script>
+<!-- Music -->
+<div class="music-btn" id="musicBtn">Включить музыку</div>
+<audio id="bgMusic" loop>
+  <source src="music/song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+let isPlaying = false;
+
+musicBtn.addEventListener("click", () => {
+  if (!isPlaying) {
+    music.volume = 0.8;
+    music.play().then(() => {
+      isPlaying = true;
+      musicBtn.innerText = "Остановить музыку";
+    });
+  } else {
+    music.pause();
+    isPlaying = false;
+    musicBtn.innerText = "Включить музыку";
+  }
 });
 </script>
 
