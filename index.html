@@ -55,19 +55,21 @@ body {
 }
 
 .hero {
-  @media (max-width: 768px) {
+  height: 100vh;
+  background: url("photos/main.jpg") center/cover no-repeat;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: contrast(1.05) saturate(1.05);
+}
+
+@media (max-width: 768px) {
   .hero {
     background-attachment: scroll;
   }
 }
-  height:100vh;
-  background:url("photos/main.jpg") center/cover no-repeat;
-  position:relative;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  filter: contrast(1.05) saturate(1.05);
-}
+
 /* 👇 ГРАДИЕНТ ТОЛЬКО ВНИЗУ ФОТО */
 
 .hero-content{position:relative;color:white;text-align:center;position: relative;
