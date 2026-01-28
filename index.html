@@ -60,9 +60,13 @@ body {
 }
 
 .hero {
+  @media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll;
+  }
+}
   height:100vh;
   background:url("photos/main.jpg") center/cover no-repeat;
-  background-attachment: fixed;
   position:relative;
   display:flex;
   justify-content:center;
@@ -781,6 +785,37 @@ input,select,textarea{
   opacity: 1;
   transform: translateX(-50%) scale(1);
 }
+/* ===== STORY EXPAND ===== */
+.story-section {
+  cursor: pointer;
+}
+
+.story-inner {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.8s ease;
+}
+
+.story-section.open .story-inner {
+  max-height: 2000px;
+  margin-top: 25px;
+}
+
+.story-text {
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.story-close {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(135deg, #7A1F2B, #E3C3A8);
+  color: white;
+  cursor: pointer;
+}
 
 </style>
 </head>
@@ -851,17 +886,27 @@ const musicBtn = document.getElementById("musicBtn");
 
 
 <!-- STORY -->
-<div class="section visible">
+<div class="section story-section" onclick="toggleStory(this)">
   <div class="title" id="storyTitle"></div>
 
-  <div class="gallery">
-    <img src="photos/photo1.jpg">
-    <img src="photos/photo2.jpg">
-    <img src="photos/photo3.jpg">
-    <img src="photos/photo4.jpg">
+  <div class="story-inner">
+    <p class="story-text">
+      Всё началось с простого разговора, который мы тогда
+      не восприняли всерьёз…<br><br>
+      Но именно он стал началом нашей общей истории ❤️
+    </p>
+
+    <div class="gallery">
+      <img src="photos/photo1.jpg">
+      <img src="photos/photo2.jpg">
+    </div>
+
+    <button class="story-close"
+      onclick="event.stopPropagation(); toggleStory(this.closest('.story-section'));">
+      Закрыть
+    </button>
   </div>
 </div>
-  <div class="divider"></div>
 
   <!-- COUPLE PREMIUM -->
 <div class="section couple-section">
@@ -1110,24 +1155,6 @@ function fillSelect(select,arr){
 
 setLang(localStorage.getItem("lang") || "ru");
 </script>
-<script>
-let playing = false;
-
-function toggleMusic() {
-  if (!playing) {
-    music.play().then(() => {
-      playing = true;
-      musicBtn.innerText = "Остановить музыку";
-    }).catch(() => {
-      alert("Нажмите ещё раз, чтобы включить музыку");
-    });
-  } else {
-    music.pause();
-    playing = false;
-    musicBtn.innerText = "Включить музыку";
-  }
-}
-</script>
 
 <!-- THANK YOU OVERLAY -->
 <div class="thank-overlay" id="thankOverlay">
@@ -1285,33 +1312,6 @@ let musicStarted = false;
 const music = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
 
-function tryStartMusic() {
-  if (musicStarted) return;
-
-  music.volume = 0;
-  music.play().then(() => {
-    musicStarted = true;
-    fadeInMusic();
-    musicBtn.innerText = "Остановить музыку";
-
-  }).catch(() => {
-    // если браузер заблокировал — ничего не делаем
-  });
-}
-
-
-// плавное увеличение громкости
-function fadeInMusic() {
-  let volume = 0;
-  const fade = setInterval(() => {
-    if (volume < 1) {
-      volume += 0.02;   // скорость нарастания
-      music.volume = volume;
-    } else {
-      clearInterval(fade);
-    }
-  }, 100);
-}
 </script>
 <script>
 let musicStarted = false;
@@ -1378,6 +1378,11 @@ function updateCountdown() {
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
+</script>
+<script>
+function toggleStory(section) {
+  section.classList.toggle("open");
+}
 </script>
 
 </body>
