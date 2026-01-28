@@ -12,6 +12,13 @@
 :root {
   --wine:#7A1F2B;
   --wine-light:#9a3a46;
+  --dress-1: #F3EFEA;
+  --dress-2: #EADFCC;
+  --dress-3: #C9A3A8;
+  --dress-4: #8B7E74;
+  --dress-5: #6D1F2B;
+}
+
 }
 
 body {
@@ -590,6 +597,165 @@ input,select,textarea{
     font-size: 18px;
   }
 }
+/* ===== DRESS CODE PALETTE (SAFE) ===== */
+:root {
+  --dress-1: #F3EFEA;
+  --dress-2: #EADFCC;
+  --dress-3: #C9A3A8;
+  --dress-4: #8B7E74;
+  --dress-5: #6D1F2B;
+}
+
+/* контейнер цветов */
+.colors {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+/* один цвет */
+.color {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* анимация наведения */
+.color:hover {
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+
+/* подпись */
+.color::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: 0.3s ease;
+  color: #6D1F2B;
+}
+
+/* показываем подпись */
+.color:hover::after {
+  opacity: 1;
+}
+/* ===== ICON ON HOVER ===== */
+.color::before {
+  content: attr(data-icon);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #6D1F2B;
+  background: rgba(255,255,255,0.55);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: 0.35s ease;
+  pointer-events: none;
+}
+
+/* появление иконки */
+.color:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+/* ===== DRESS CODE COLORS (SVG ICONS) ===== */
+.colors {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.color {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* hover */
+.color:hover {
+  transform: translateY(-6px) scale(1.1);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+/* подпись */
+.color::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 10px;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+/* SVG иконка */
+.color::before {
+  content: "";
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.6);
+  width: 22px;
+  height: 22px;
+  opacity: 0;
+  transition: 0.3s ease;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* 👗 Платье */
+.color:nth-child(1)::before,
+.color:nth-child(2)::before,
+.color:nth-child(3)::before {
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'>\
+<path d='M12 2l3 4h-6l3-4zm-5 5h10l2 16H5L7 7z'/>\
+</svg>");
+}
+
+/* 🤵 Костюм */
+.color:nth-child(4)::before,
+.color:nth-child(5)::before {
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'>\
+<path d='M7 2l5 4 5-4v6l-3 2v12H10V10L7 8V2z'/>\
+</svg>");
+}
+
+/* показать при наведении */
+.color:hover::after,
+.color:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
 
 </style>
 </head>
@@ -706,11 +872,12 @@ const musicBtn = document.getElementById("musicBtn");
   <div class="title" id="dressTitle"></div>
   <p id="dressText"></p>
   <div class="colors">
-    <div class="color" style="background:#7A1F2B"></div>
-    <div class="color" style="background:#E3C3A8"></div>
-    <div class="color" style="background:black"></div>
-    <div class="color" style="background:red"></div>
-  </div>
+  <div class="color" style="background:var(--dress-1)" data-name="Ivory"></div>
+  <div class="color" style="background:var(--dress-2)" data-name="Champagne"></div>
+  <div class="color" style="background:var(--dress-3)" data-name="Dusty Rose"></div>
+  <div class="color" style="background:var(--dress-4)" data-name="Taupe"></div>
+  <div class="color" style="background:var(--dress-5)" data-name="Wine"></div>
+</div>
 </div>
 <div class="divider"></div>
 <!-- SCHEDULE -->
