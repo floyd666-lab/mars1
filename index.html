@@ -18,9 +18,6 @@
   --dress-4: #8B7E74;
   --dress-5: #6D1F2B;
 }
-
-}
-
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -70,8 +67,25 @@ body {
   display:flex;
   justify-content:center;
   align-items:center;
+  filter: contrast(1.05) saturate(1.05);
 }
-.hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.4);}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  /* Плавный переход от фото к бардовому фону */
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,0.25) 0%,
+      rgba(0,0,0,0.35) 40%,
+      rgba(111,15,28,0.85) 80%,
+      #6f0f1c 100%
+    );
+
+  z-index: 1;
+}
 .hero-content{position:relative;color:white;text-align:center;}
 .hero h1{font-family:'Playfair Display';font-size:42px;}
 .phrase{font-family:'Cormorant Garamond';font-size:22px;font-style:italic;margin:15px 0;}
