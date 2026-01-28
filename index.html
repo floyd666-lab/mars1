@@ -166,7 +166,8 @@ input,select,textarea{
   border-radius:30px;
   font-size:14px;
   cursor:pointer;
-  z-index:100;
+  z-index: 999999;
+  pointer-events: auto;
 }
 
 .lang-switch {
@@ -405,6 +406,7 @@ input,select,textarea{
   content: "";
   position: absolute;
   inset: 0;
+  pointer-events: none; /* ⬅️ ВОТ ЭТО КЛЮЧ */
 
   background: linear-gradient(
     to bottom,
@@ -1220,6 +1222,25 @@ function fillSelect(select,arr){
 }
 
 setLang(localStorage.getItem("lang") || "ru");
+</script>
+<script>
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+let isPlaying = false;
+
+musicBtn.addEventListener("click", () => {
+  if (!isPlaying) {
+    music.volume = 0.8;
+    music.play();
+    isPlaying = true;
+    musicBtn.innerText = "Остановить музыку";
+  } else {
+    music.pause();
+    isPlaying = false;
+    musicBtn.innerText = "Включить музыку";
+  }
+});
 </script>
 
 <!-- THANK YOU OVERLAY -->
