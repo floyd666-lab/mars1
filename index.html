@@ -887,13 +887,27 @@ input,select,textarea{
 .music-btn {
   z-index: 999999;
 }
+  .hero,
+.hero * {
+  pointer-events: auto;
+}
+
+.hero::before {
+  pointer-events: none !important;
+}
+
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999999;
+  pointer-events: auto !important;
+}
+
 </style>
 </head>
 
 <body>
-<audio controls>
-  <source src="music/song.mp3" type="audio/mpeg">
-</audio>
 
 <!-- Language Switch -->
 <div class="lang-switch">
