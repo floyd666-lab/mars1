@@ -1074,7 +1074,8 @@ input,select,textarea{
   overflow: hidden;
   transition: max-height 0.6s ease, opacity 0.4s ease;
 }
-/* CONFETTI */
+
+  /* CONFETTI HEARTS */
 .confetti {
   position: fixed;
   top: 0;
@@ -1085,34 +1086,28 @@ input,select,textarea{
   z-index: 999998;
 }
 
-#confetti-left {
-  left: 0;
-}
+#confetti-left { left: 0; }
+#confetti-right { right: 0; }
 
-#confetti-right {
-  right: 0;
-}
-
-.confetti-piece {
+.confetti-heart {
   position: absolute;
-  width: 8px;
-  height: 14px;
+  font-size: 18px;
+  animation: heart-fall 5s linear forwards;
   opacity: 0.9;
-  animation: confetti-fall 3s ease-out forwards;
 }
 
-/* анимация падения */
-@keyframes confetti-fall {
+@keyframes heart-fall {
   0% {
-    transform: translateY(-20px) rotate(0deg);
+    transform: translateY(-20px) scale(1);
     opacity: 1;
   }
   100% {
-    transform: translateY(110vh) rotate(720deg);
+    transform: translateY(110vh) scale(1.2);
     opacity: 0;
   }
 }
 
+  
 </style>
 </head>
 
@@ -1336,34 +1331,40 @@ input,select,textarea{
   </div>
 </div>
 
-  <script>
-function launchConfetti() {
-  const colors = [
-    "#6f0f1c", // бордовый
-    "#8a1c2c",
-    "#a8323f",
-    "#f2c94c", // золото
-    "#f7e7ce"  // нежный
-  ];
+<script>
+let confettiInterval = null;
 
-  ["confetti-left", "confetti-right"].forEach(side => {
-    const container = document.getElementById(side);
+function startConfetti() {
+  const colors = ["#6f0f1c", "#8a1c2c", "#a8323f", "#f2c94c", "#f7e7ce"];
+  const sides = ["confetti-left", "confetti-right"];
 
-    for (let i = 0; i < 40; i++) {
-      const piece = document.createElement("div");
-      piece.className = "confetti-piece";
+  confettiInterval = setInterval(() => {
+    sides.forEach(side => {
+      const container = document.getElementById(side);
+      if (!container) return;
 
-      piece.style.left = Math.random() * 100 + "%";
-      piece.style.backgroundColor =
+      const heart = document.createElement("div");
+      heart.className = "confetti-heart";
+      heart.textContent = "❤";
+
+      heart.style.left = Math.random() * 100 + "%";
+      heart.style.color =
         colors[Math.floor(Math.random() * colors.length)];
-      piece.style.animationDelay = Math.random() * 0.5 + "s";
-      piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+      heart.style.fontSize = 14 + Math.random() * 10 + "px";
 
-      container.appendChild(piece);
+      container.appendChild(heart);
 
-      setTimeout(() => piece.remove(), 3000);
-    }
-  });
+      setTimeout(() => heart.remove(), 5200);
+    });
+  }, 250); // каждые 250 мс появляются новые сердечки
+}
+
+function stopConfetti() {
+  clearInterval(confettiInterval);
+  confettiInterval = null;
+
+  document.getElementById("confetti-left").innerHTML = "";
+  document.getElementById("confetti-right").innerHTML = "";
 }
 </script>
 
@@ -1760,7 +1761,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // показать спасибо
       thankYouText.innerHTML = `Спасибо, <strong>${name}</strong>!<br>Мы будем вас ждать 💍`;
       thankYou.classList.add("show");
-      launchConfetti();
+      startConfetti();
 
       // показать кнопку позже
       setTimeout(() => {
@@ -1774,6 +1775,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeBtn.addEventListener("click", () => {
     thankYou.classList.remove("show");
+    stopConfetti();
   });
 });
 </script>
