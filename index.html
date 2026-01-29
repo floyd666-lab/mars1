@@ -9,8 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <form
   class="rsvp-form"
-  action="https://script.google.com/macros/s/AKfycbzMC5dpp0Tp4lBkMwSKlTVhk3L9VwpqjROcqAGFkztPqnyEwJKas9gV1k7xcM9Qy3gt/exec"
-  method="POST"
 >
 <style>
   /* ===== GLOBAL FORM FIX ===== */
@@ -1744,34 +1742,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!form) return;
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-    const formData = new FormData(form);
-    const name = formData.get("name") || "дорогой гость";
+  const formData = new FormData(form);
+  const name = formData.get("name") || "дорогой гость";
 
-    fetch(form.action, {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      // свернуть форму
-      form.classList.add("collapsing");
+  fetch("https://script.google.com/macros/s/AKfycbzMC5dpp0Tp4lBkMwSKlTVhk3L9VwpqjROcqAGFkztPqnyEwJKas9gV1k7xcM9Qy3gt/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(() => {
+    // свернуть форму
+    form.classList.add("collapsing");
 
-      // показать спасибо
-      thankYouText.innerHTML = `Спасибо, <strong>${name}</strong>!<br>Мы будем вас ждать 💍`;
-      thankYou.classList.add("show");
-      startConfetti();
+    // показать thank you
+    thankYouText.innerHTML =
+      `Спасибо, <strong>${name}</strong>!<br>Мы будем вас ждать 💍`;
 
-      // показать кнопку позже
-      setTimeout(() => {
-        closeBtn.classList.add("show");
-      }, 2500);
-    })
-    .catch(() => {
-      alert("Ошибка отправки. Попробуйте ещё раз.");
-    });
+    thankYou.classList.add("show");
+
+    // ❤️ запускаем сердечки
+    startConfetti();
+  })
+  .catch(() => {
+    alert("Ошибка отправки. Попробуйте ещё раз.");
   });
+});
+
 
   closeBtn.addEventListener("click", () => {
     thankYou.classList.remove("show");
