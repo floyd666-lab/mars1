@@ -7,9 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-<form
-  class="rsvp-form"
->
+
 <style>
   /* ===== GLOBAL FORM FIX ===== */
 *, *::before, *::after {
@@ -1110,6 +1108,61 @@ input,select,textarea{
 </head>
 
 <body>
+<!-- RSVP FORM -->
+<form class="rsvp-form">
+
+  <!-- Имя -->
+  <input
+    type="text"
+    name="name"
+    placeholder="Ваше имя"
+    required
+  >
+
+  <!-- Присутствие -->
+  <select name="attendance" required>
+    <option value="">Сможете ли вы прийти?</option>
+    <option value="yes">Да, с удовольствием</option>
+    <option value="no">К сожалению, не смогу</option>
+  </select>
+
+  <!-- Еда -->
+  <select name="food">
+    <option value="">Предпочтения по еде</option>
+    <option value="no_meat">Не ем мясо</option>
+    <option value="no_fish">Не ем рыбу</option>
+    <option value="vegetarian">Вегетарианец</option>
+    <option value="no_preferences">Нет предпочтений</option>
+  </select>
+
+  <!-- Алкоголь -->
+  <select name="alcohol">
+    <option value="">Алкоголь</option>
+    <option value="cognac_whiskey">Виски / Коньяк</option>
+    <option value="vodka">Водка</option>
+    <option value="champagne">Шампанское</option>
+    <option value="wine">Вино</option>
+    <option value="no_alcohol">Не пью алкоголь</option>
+  </select>
+
+  <!-- Ребёнок -->
+  <select name="child">
+    <option value="">С вами будет ребёнок?</option>
+    <option value="yes">Да</option>
+    <option value="no">Нет</option>
+  </select>
+
+  <!-- Музыка -->
+  <textarea
+    name="music"
+    rows="3"
+    placeholder="Трек / Исполнитель / Жанр"
+  ></textarea>
+
+  <!-- Кнопка -->
+  <button type="submit">Отправить</button>
+
+</form>
 
 <!-- Language Switch -->
 <div class="lang-switch">
@@ -1610,50 +1663,7 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 </script>
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector(".rsvp-form");
-  const thankYou = document.getElementById("thankYou");
-  const thankYouText = document.getElementById("thankYouText");
-  const closeBtn = document.getElementById("closeThankYou");
 
-  if (!form) return;
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const formData = new FormData(form);
-  const name = formData.get("name") || "дорогой гость";
-
-  fetch("https://script.google.com/macros/s/AKfycbzMC5dpp0Tp4lBkMwSKlTVhk3L9VwpqjROcqAGFkztPqnyEwJKas9gV1k7xcM9Qy3gt/exec", {
-    method: "POST",
-    body: formData
-  })
-  .then(() => {
-    // свернуть форму
-    form.classList.add("collapsing");
-
-    // показать thank you
-    thankYouText.innerHTML =
-      `Спасибо, <strong>${name}</strong>!<br>Мы будем вас ждать 💍`;
-
-    thankYou.classList.add("show");
-
-    // ❤️ запускаем сердечки
-    startConfetti();
-  })
-  .catch(() => {
-    alert("Ошибка отправки. Попробуйте ещё раз.");
-  });
-});
-
-
-  closeBtn.addEventListener("click", () => {
-    thankYou.classList.remove("show");
-    stopConfetti();
-  });
-});
-</script>
 
 <script>
 function toggleStory(section) {
@@ -1667,10 +1677,6 @@ function toggleStory(section) {
   <source src="music/song.mp3" type="audio/mpeg">
 </audio>
   <script src="music.js"></script>
-
-  <!-- CONFETTI -->
-<div id="confetti-left" class="confetti"></div>
-<div id="confetti-right" class="confetti"></div>
 
   
 </body>
