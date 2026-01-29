@@ -1099,30 +1099,32 @@ input,select,textarea{
   </div>
 </div>
 <div class="divider"></div>
-<!-- FORM -->
-<div class="section">
-  <div class="title" id="confirmTitle"></div>
+<!-- RSVP FORM -->
+<div class="section rsvp">
+  <h2>Подтвердите присутствие</h2>
+  <form>
+    <input
+      type="text"
+      name="name"
+      placeholder="Ваше имя"
+      required
+    >
+    <select name="attendance" required>
+      <option value="">Вы сможете прийти?</option>
+      <option value="yes">Да, с удовольствием</option>
+      <option value="no">К сожалению, нет</option>
+    </select>
 
-  <input id="name" placeholder="">
-  <select id="status"></select>
+    <textarea
+      name="music"
+      rows="3"
+      placeholder="Трек / Исполнитель / Жанр"
+    ></textarea>
 
-  <h4 id="foodTitle"></h4>
-  <select id="food"></select>
-
-  <h4 id="alcoholTitle"></h4>
-  <select id="alcohol"></select>
-
-  <h4 id="childTitle"></h4>
-  <select id="child"></select>
-
-  <h4 id="musicTitle"></h4>
-  <textarea id="music" placeholder="Трек / Исполнитель / Жанр"></textarea>
-
-  <button class="button" id="sendBtn" onclick="sendForm()"></button>
+    <button type="submit">Отправить</button>
+  </form>
 </div>
-
-</div>
-
+  
 <script>
 const texts = {
   ru: {
