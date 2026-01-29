@@ -1113,7 +1113,11 @@ input,select,textarea{
     Пожалуйста, заполните форму, чтобы мы могли лучше подготовиться к празднику 💍
   </p>
 
-  <form class="rsvp-form">
+  <form
+    class="rsvp-form"
+    action="https://script.google.com/macros/s/ТВОЙ_ID/exec"
+    method="POST"
+  >
 
     <!-- NAME -->
     <input
@@ -1124,89 +1128,37 @@ input,select,textarea{
     >
 
     <!-- ATTENDANCE -->
-    <div class="form-group">
-      <p class="form-title">Сможете ли вы прийти?</p>
+    <select name="attendance" required>
+      <option value="">Сможете ли вы прийти?</option>
+      <option value="yes">Да, с удовольствием</option>
+      <option value="no">К сожалению, не смогу</option>
+    </select>
 
-      <label>
-        <input type="radio" name="attendance" value="yes" required>
-        Да, с удовольствием
-      </label>
-
-      <label>
-        <input type="radio" name="attendance" value="no">
-        К сожалению, не смогу
-      </label>
-    </div>
-
-    <!-- FOOD PREFERENCES -->
-    <div class="form-group">
-      <p class="form-title">Предпочтения по еде</p>
-
-      <label>
-        <input type="radio" name="food" value="no_meat">
-        Не ем мясо
-      </label>
-
-      <label>
-        <input type="radio" name="food" value="no_fish">
-        Не ем рыбу
-      </label>
-
-      <label>
-        <input type="radio" name="food" value="vegetarian">
-        Вегетарианец
-      </label>
-
-      <label>
-        <input type="radio" name="food" value="no_preferences" checked>
-        Нет предпочтений
-      </label>
-    </div>
+    <!-- FOOD -->
+    <select name="food">
+      <option value="">Предпочтения по еде</option>
+      <option value="no_meat">Не ем мясо</option>
+      <option value="no_fish">Не ем рыбу</option>
+      <option value="vegetarian">Вегетарианец</option>
+      <option value="no_preferences">Нет предпочтений</option>
+    </select>
 
     <!-- ALCOHOL -->
-    <div class="form-group">
-      <p class="form-title">Алкоголь</p>
-
-      <label>
-        <input type="radio" name="alcohol" value="cognac_whiskey">
-        Коньяк / Виски
-      </label>
-
-      <label>
-        <input type="radio" name="alcohol" value="vodka">
-        Водка
-      </label>
-
-      <label>
-        <input type="radio" name="alcohol" value="champagne">
-        Шампанское
-      </label>
-
-      <label>
-        <input type="radio" name="alcohol" value="wine">
-        Вино
-      </label>
-
-      <label>
-        <input type="radio" name="alcohol" value="no_alcohol">
-        Не пью алкоголь
-      </label>
-    </div>
+    <select name="alcohol">
+      <option value="">Алкоголь</option>
+      <option value="cognac_whiskey">Коньяк / Виски</option>
+      <option value="vodka">Водка</option>
+      <option value="champagne">Шампанское</option>
+      <option value="wine">Вино</option>
+      <option value="no_alcohol">Не пью алкоголь</option>
+    </select>
 
     <!-- CHILD -->
-    <div class="form-group">
-      <p class="form-title">С вами будет ребёнок?</p>
-
-      <label>
-        <input type="radio" name="child" value="yes">
-        Да
-      </label>
-
-      <label>
-        <input type="radio" name="child" value="no" checked>
-        Нет
-      </label>
-    </div>
+    <select name="child">
+      <option value="">С вами будет ребёнок?</option>
+      <option value="yes">Да</option>
+      <option value="no">Нет</option>
+    </select>
 
     <!-- MUSIC -->
     <textarea
@@ -1220,6 +1172,7 @@ input,select,textarea{
 
   </form>
 </div>
+
   
 <script>
 const texts = {
