@@ -948,7 +948,11 @@ input,select,textarea{
   70%  { box-shadow: 0 0 0 16px rgba(168, 50, 63, 0); }
   100% { box-shadow: 0 0 0 0 rgba(168, 50, 63, 0); }
 }
-  
+  .countdown small {
+  color: #fff;
+  opacity: 0.7;
+}
+
 </style>
 </head>
 
@@ -993,19 +997,19 @@ input,select,textarea{
       <div class="countdown" id="countdown">
         <div class="time-box">
           <span id="days" class="flip">00</span>
-          <small id="daysLabel"></small>
+          <small id="daysLabel">Дней</small>
         </div>
         <div class="time-box">
           <span id="hours" class="flip">00</span>
-          <small id="hoursLabel"></small>
+          <small id="hoursLabel">Часов</small>
         </div>
         <div class="time-box">
           <span id="minutes" class="flip">00</span>
-          <small id="minutesLabel"></small>
+          <small id="minutesLabel">Минут</small>
         </div>
         <div class="time-box">
           <span id="seconds" class="flip">00</span>
-          <small id="secondsLabel"></small>
+          <small id="secondsLabel">Секунд</small>
         </div>
       </div>
     </div>
