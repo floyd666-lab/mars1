@@ -1102,6 +1102,74 @@ input,select,textarea{
     opacity: 0;
   }
 }
+/* overlay */
+.thank-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(111, 15, 28, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s ease;
+  z-index: 9999;
+}
+
+.thank-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* modal */
+.thank-box {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px 26px;
+  max-width: 340px;
+  width: 90%;
+  text-align: center;
+  transform: translateY(20px);
+  transition: transform .4s ease;
+}
+
+.thank-overlay.show .thank-box {
+  transform: translateY(0);
+}
+
+.thank-text {
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+/* close button */
+.thank-close {
+  margin-top: 22px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg,#6f0f1c,#8a1c2c,#a8323f);
+  color: #fff;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s ease;
+}
+
+.thank-close.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* canvas */
+#fxCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+}
 
   
 </style>
@@ -1631,17 +1699,109 @@ document.addEventListener("DOMContentLoaded", () => {
       body: formData
     })
     .then(() => {
-      console.log("Форма успешно отправлена");
-      alert("Спасибо! Мы будем вас ждать 💍");
-      form.reset();
-    })
+  const name = formData.get("name") || "Дорогой гость";
+
+  showThankYou(name);
+  startFX();
+});
     .catch(err => {
       console.error("Ошибка отправки", err);
       alert("Ошибка отправки формы");
     });
   });
 });
+    const overlay = document.getElementById("thankOverlay");
+const thankText = document.getElementById("thankText");
+const closeBtn = document.getElementById("thankClose");
+const canvas = document.getElementById("fxCanvas");
+const ctx = canvas.getContext("2d");
+
+let fxRunning = false;
+
+function showThankYou(name) {
+  thankText.innerHTML = `Спасибо, <strong>${name}</strong>!<br>Мы будем Вас ждать 💍`;
+  overlay.classList.add("show");
+
+  setTimeout(() => {
+    closeBtn.classList.add("show");
+  }, 3500);
+}
+
+closeBtn.addEventListener("click", () => {
+  overlay.classList.remove("show");
+  closeBtn.classList.remove("show");
+  stopFX();
+});
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+/* FX: confetti + fireworks */
+function startFX() {
+  fxRunning = true;
+  const particles = [];
+
+  function spawn() {
+    for (let i = 0; i < 12; i++) {
+      particles.push({
+        x: Math.random() < .5 ? 0 : canvas.width,
+        y: Math.random() * canvas.height * .6,
+        vx: (Math.random() * 4 + 2) * (Math.random() < .5 ? 1 : -1),
+        vy: Math.random() * -4,
+        life: 120,
+        size: 3 + Math.random() * 3,
+        color: ["#6f0f1c","#a8323f","#f2c94c","#ffffff"][
+          Math.floor(Math.random()*4)
+        ]
+      });
+    }
+  }
+
+  function loop() {
+    if (!fxRunning) return;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    if (Math.random() < .2) spawn();
+
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += .1;
+      p.life--;
+
+      ctx.fillStyle = p.color;
+      ctx.fillRect(p.x,p.y,p.size,p.size);
+    });
+
+    for (let i = particles.length-1; i >= 0; i--) {
+      if (particles[i].life <= 0) particles.splice(i,1);
+    }
+
+    requestAnimationFrame(loop);
+  }
+  loop();
+}
+
+function stopFX() {
+  fxRunning = false;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+}
+
 </script>
+<!-- THANK YOU MODAL -->
+<div class="thank-overlay" id="thankOverlay">
+  <div class="thank-box">
+    <div class="thank-text" id="thankText"></div>
+    <button class="thank-close" id="thankClose">Закрыть</button>
+  </div>
+</div>
+
+<!-- EFFECTS -->
+<canvas id="fxCanvas"></canvas>
 
   
 </body>
