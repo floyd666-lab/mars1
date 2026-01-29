@@ -1611,6 +1611,38 @@ function toggleStory(section) {
   <button type="submit">Отправить</button>
 
 </form>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector(".rsvp-form");
+
+  if (!form) {
+    console.error("RSVP форма не найдена");
+    return;
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch("https://script.google.com/macros/s/AKfycbzMC5dpp0Tp4lBkMwSKlTVhk3L9VwpqjROcqAGFkztPqnyEwJKas9gV1k7xcM9Qy3gt/exec", {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      console.log("Форма успешно отправлена");
+      alert("Спасибо! Мы будем вас ждать 💍");
+      form.reset();
+    })
+    .catch(err => {
+      console.error("Ошибка отправки", err);
+      alert("Ошибка отправки формы");
+    });
+  });
+});
+</script>
+
   
 </body>
 </html>
