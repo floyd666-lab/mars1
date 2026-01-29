@@ -1507,12 +1507,13 @@ function setLang(lang){
   dressTitle.innerText = t.dressTitle;
   dressText.innerText = t.dressText;
   scheduleTitle.innerText = t.scheduleTitle;
-  schedule1.innerText = t.schedule1;
-  schedule2.innerText = t.schedule2;
-  schedule3.innerText = t.schedule3;
-  schedule4.innerText = t.schedule4;
-  schedule5.innerText = t.schedule5;
-  schedule6.innerText = t.schedule6
+document.querySelectorAll(".schedule-item").forEach(item => {
+  const key = item.dataset.key;
+  if (t[key]) {
+    item.innerText = t[key];
+  }
+});
+
   mapTitle.innerText = t.mapTitle;
   mapPlace.innerText = t.mapPlace;
   confirmTitle.innerText = t.confirmTitle;
