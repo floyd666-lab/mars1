@@ -1108,61 +1108,6 @@ input,select,textarea{
 </head>
 
 <body>
-<!-- RSVP FORM -->
-<form class="rsvp-form">
-
-  <!-- Имя -->
-  <input
-    type="text"
-    name="name"
-    placeholder="Ваше имя"
-    required
-  >
-
-  <!-- Присутствие -->
-  <select name="attendance" required>
-    <option value="">Сможете ли вы прийти?</option>
-    <option value="yes">Да, с удовольствием</option>
-    <option value="no">К сожалению, не смогу</option>
-  </select>
-
-  <!-- Еда -->
-  <select name="food">
-    <option value="">Предпочтения по еде</option>
-    <option value="no_meat">Не ем мясо</option>
-    <option value="no_fish">Не ем рыбу</option>
-    <option value="vegetarian">Вегетарианец</option>
-    <option value="no_preferences">Нет предпочтений</option>
-  </select>
-
-  <!-- Алкоголь -->
-  <select name="alcohol">
-    <option value="">Алкоголь</option>
-    <option value="cognac_whiskey">Виски / Коньяк</option>
-    <option value="vodka">Водка</option>
-    <option value="champagne">Шампанское</option>
-    <option value="wine">Вино</option>
-    <option value="no_alcohol">Не пью алкоголь</option>
-  </select>
-
-  <!-- Ребёнок -->
-  <select name="child">
-    <option value="">С вами будет ребёнок?</option>
-    <option value="yes">Да</option>
-    <option value="no">Нет</option>
-  </select>
-
-  <!-- Музыка -->
-  <textarea
-    name="music"
-    rows="3"
-    placeholder="Трек / Исполнитель / Жанр"
-  ></textarea>
-
-  <!-- Кнопка -->
-  <button type="submit">Отправить</button>
-
-</form>
 
 <!-- Language Switch -->
 <div class="lang-switch">
@@ -1677,7 +1622,61 @@ function toggleStory(section) {
   <source src="music/song.mp3" type="audio/mpeg">
 </audio>
   <script src="music.js"></script>
+<!-- RSVP FORM -->
+<form class="rsvp-form">
 
+  <!-- Имя -->
+  <input
+    type="text"
+    name="name"
+    placeholder="Ваше имя"
+    required
+  >
+
+  <!-- Присутствие -->
+  <select name="attendance" required>
+    <option value="">Сможете ли вы прийти?</option>
+    <option value="yes">Да, с удовольствием</option>
+    <option value="no">К сожалению, не смогу</option>
+  </select>
+
+  <!-- Еда -->
+  <select name="food">
+    <option value="">Предпочтения по еде</option>
+    <option value="no_meat">Не ем мясо</option>
+    <option value="no_fish">Не ем рыбу</option>
+    <option value="vegetarian">Вегетарианец</option>
+    <option value="no_preferences">Нет предпочтений</option>
+  </select>
+
+  <!-- Алкоголь -->
+  <select name="alcohol">
+    <option value="">Алкоголь</option>
+    <option value="cognac_whiskey">Виски / Коньяк</option>
+    <option value="vodka">Водка</option>
+    <option value="champagne">Шампанское</option>
+    <option value="wine">Вино</option>
+    <option value="no_alcohol">Не пью алкоголь</option>
+  </select>
+
+  <!-- Ребёнок -->
+  <select name="child">
+    <option value="">С вами будет ребёнок?</option>
+    <option value="yes">Да</option>
+    <option value="no">Нет</option>
+  </select>
+
+  <!-- Музыка -->
+  <textarea
+    name="music"
+    rows="3"
+    placeholder="Трек / Исполнитель / Жанр"
+  ></textarea>
+
+  <!-- Кнопка -->
+  <button type="submit">Отправить</button>
+
+</form>
   
 </body>
 </html>
