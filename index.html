@@ -1678,58 +1678,61 @@ function toggleStory(section) {
 
 <div class="rsvp-section">
   <div class="rsvp-title">Подтвердите присутствие</div>
+<form id="rsvpForm">
 
-  <form class="rsvp-form" id="rsvpForm">
+  <input type="hidden" name="attendance" id="attendanceInput">
 
-    <input type="text" name="name" placeholder="Ваше имя" required>
+  <input
+    type="text"
+    id="guestName"
+    name="name"
+    placeholder="Ваше имя"
+    required
+  >
 
-    <!-- ATTENDANCE -->
-    <div class="attendance-block" id="attendanceBlock">
-      <div class="attendance-title">Сможете ли вы прийти?</div>
+  <div class="attendance-buttons">
+    <button type="button" id="yesBtn" class="att-btn yes">
+      ❤️<span>Приду с удовольствием</span>
+    </button>
 
-      <div class="attendance-options">
-        <button type="button" class="attendance-btn yes" data-value="Приду с удовольствием">
-          ❤️
-          <span>Приду<br>с удовольствием</span>
-        </button>
+    <button type="button" id="noBtn" class="att-btn no">
+      ✖️<span>К сожалению, не смогу</span>
+    </button>
+  </div>
 
-        <button type="button" class="attendance-btn no" data-value="К сожалению, не смогу">
-          ✖
-          <span>К сожалению,<br>не смогу</span>
-        </button>
-      </div>
+  <select name="food">
+    <option value="">Предпочтения по еде</option>
+    <option>Без ограничений</option>
+    <option>Не ем мясо</option>
+    <option>Не ем рыбу</option>
+    <option>Вегетарианец</option>
+  </select>
 
-      <input type="hidden" name="attendance" id="attendanceInput" required>
-    </div>
+  <select name="alcohol">
+    <option value="">Алкоголь</option>
+    <option>Вино</option>
+    <option>Шампанское</option>
+    <option>Виски / Коньяк</option>
+    <option>Водка</option>
+    <option>Не пью алкоголь</option>
+  </select>
 
-    <select name="food">
-      <option value="">Предпочтения по еде</option>
-      <option>Без ограничений</option>
-      <option>Не ем мясо</option>
-      <option>Не ем рыбу</option>
-      <option>Вегетарианец</option>
-    </select>
+  <select name="child">
+    <option value="">С вами будет ребёнок?</option>
+    <option>Нет</option>
+    <option>Да</option>
+  </select>
 
-    <select name="alcohol">
-      <option value="">Алкоголь</option>
-      <option>Виски / Коньяк</option>
-      <option>Водка</option>
-      <option>Шампанское</option>
-      <option>Вино</option>
-      <option>Не пью алкоголь</option>
-    </select>
+  <textarea
+    name="music"
+    placeholder="Трек / Исполнитель / Жанр"
+    rows="3"
+  ></textarea>
 
-    <select name="child">
-      <option value="">С вами будет ребёнок?</option>
-      <option>Да</option>
-      <option>Нет</option>
-    </select>
+  <button type="submit" id="sendBtn">Отправить</button>
 
-    <textarea name="music" rows="3" placeholder="Трек / Исполнитель / Жанр"></textarea>
-
-    <button class="rsvp-submit" type="submit">Отправить</button>
-    
-  </form>
+</form>
+ 
 </div>
 
 <script>
@@ -1772,6 +1775,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 <!-- ================= END RSVP FORM ================= -->
+<script>
+  const attendanceInput = document.getElementById("attendanceInput");
+  const yesBtn = document.getElementById("yesBtn");
+  const noBtn = document.getElementById("noBtn");
 
+  yesBtn.onclick = () => {
+    attendanceInput.value = "Приду с удовольствием";
+    yesBtn.classList.add("active");
+    noBtn.classList.remove("active");
+  };
+
+  noBtn.onclick = () => {
+    attendanceInput.value = "К сожалению, не смогу";
+    noBtn.classList.add("active");
+    yesBtn.classList.remove("active");
+  };
+</script>
 </body>
 </html>
