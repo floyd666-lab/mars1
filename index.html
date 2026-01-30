@@ -1144,6 +1144,22 @@ input,select,textarea{
   pointer-events: none;
   z-index: 99998;
 }
+
+  .attendance-buttons {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  margin: 14px 0 4px;
+}
+  .attendance-btn svg {
+  color: #777;
+  transition: 0.3s ease;
+}
+
+.attendance-btn.active svg {
+  color: #fff;
+}
+
 </style>
 </head>
 
@@ -1585,6 +1601,52 @@ function toggleStory(section) {
   font-family: inherit;
 }
 
+  .attendance-btn {
+  flex: 1;
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 20px;
+  padding: 18px 12px;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  transition: 0.3s ease;
+}
+
+.attendance-btn span {
+  font-size: 13px;
+  line-height: 1.3;
+  color: #444;
+  text-align: center;
+}
+
+/* hover */
+.attendance-btn:hover {
+  border-color: #bbb;
+  transform: translateY(-2px);
+}
+
+/* ACTIVE — ЗАЛИВКА */
+.attendance-btn.active.yes {
+  background: linear-gradient(135deg, #7A1F2B, #9a3a46);
+  border-color: #7A1F2B;
+}
+
+.attendance-btn.active.no {
+  background: linear-gradient(135deg, #b0b0b0, #8c8c8c);
+  border-color: #8c8c8c;
+}
+
+.attendance-btn.active span {
+  color: #fff;
+}
+
+  
 .rsvp-form textarea {
   resize: none;
 }
@@ -1606,49 +1668,6 @@ function toggleStory(section) {
   gap: 20px;
 }
 
-.attendance-btn {
-  width: 120px;
-  height: 120px;
-  background: #fff;
-  border-radius: 24px;
-  border: 2px solid transparent;
-  cursor: pointer;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 34px;
-  transition: all 0.3s ease;
-
-  box-shadow:
-    0 10px 26px rgba(0,0,0,0.15);
-}
-
-.attendance-btn span {
-  font-size: 13px;
-  margin-top: 6px;
-  color: #333;
-  line-height: 1.25;
-}
-
-.attendance-btn.yes {
-  color: #c62828;
-  animation: pulse 1.8s infinite;
-}
-
-.attendance-btn.no {
-  color: #999;
-}
-
-.attendance-btn.active {
-  border-color: #8a1c2c;
-  transform: scale(1.08);
-  box-shadow:
-    0 0 0 3px rgba(138,28,44,0.25),
-    0 14px 32px rgba(0,0,0,0.25);
-}
 
 @keyframes pulse {
   0% { transform: scale(1); }
@@ -1701,14 +1720,42 @@ function toggleStory(section) {
   >
 
   <div class="attendance-buttons" id="attendanceBlock">
-    <button type="button" id="yesBtn" class="attendance-btn yes" data-value="Приду с удовольствием">
-      ❤️<span>Приду с удовольствием</span>
-    </button>
 
-    <button type="button" id="noBtn" class="attendance-btn no" data-value="К сожалению, не смогу">
-      ✖️<span>К сожалению, не смогу</span>
-    </button>
-  </div>
+  <button type="button"
+    id="yesBtn"
+    class="attendance-btn yes"
+    data-value="Приду с удовольствием">
+
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+      <path d="M12 21s-7.5-4.35-10-8.5C-0.5 8 2.5 4 6.5 5.5
+               8.5 6.3 12 9.5 12 9.5s3.5-3.2 5.5-4
+               C21.5 4 24.5 8 22 12.5
+               19.5 16.65 12 21 12 21z"
+        stroke="currentColor"
+        stroke-width="1.5"
+        fill="none"/>
+    </svg>
+
+    <span>Приду с удовольствием</span>
+  </button>
+
+  <button type="button"
+    id="noBtn"
+    class="attendance-btn no"
+    data-value="К сожалению, не смогу">
+
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+      <path d="M6 6l12 12M18 6L6 18"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"/>
+    </svg>
+
+    <span>К сожалению, не смогу</span>
+  </button>
+
+</div>
+
 
   <select name="food">
     <option value="">Предпочтения по еде</option>
