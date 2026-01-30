@@ -1385,7 +1385,24 @@ function toggleStory(section) {
   <source src="music/song.mp3" type="audio/mpeg">
 </audio>
   <script src="music.js"></script>
-  
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".attendance-btn");
+  const input = document.getElementById("attendanceInput");
+
+  if (!buttons.length || !input) return;
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      input.value = btn.dataset.value;
+    });
+  });
+});
+</script>
+
   
 </body>
 </html>
