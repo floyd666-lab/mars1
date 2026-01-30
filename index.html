@@ -968,10 +968,6 @@ input,select,textarea{
 }
   /* ===== ATTENDANCE HEART SELECT ===== */
 
-.attendance-block {
-  margin-top: 20px;
-}
-
 .attendance-title {
   font-size: 15px;
   margin-bottom: 14px;
@@ -982,44 +978,6 @@ input,select,textarea{
   display: flex;
   justify-content: center;
   gap: 28px;
-}
-
-.attendance-btn {
-  background: #fff;
-  border: 2px solid #eee;
-  border-radius: 20px;
-  width: 120px;
-  height: 120px;
-  cursor: pointer;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 34px;
-  transition: 0.3s ease;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-.attendance-btn span {
-  margin-top: 8px;
-  font-size: 12px;
-  color: #555;
-  line-height: 1.3;
-}
-
-.attendance-btn.yes {
-  color: #c0392b;
-}
-
-.attendance-btn.no {
-  color: #999;
-}
-
-.attendance-btn:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.15);
 }
 
 
@@ -1044,27 +1002,11 @@ input,select,textarea{
   gap: 22px;
 }
 
-/* hover */
-
-
-/* active */
-.attendance-btn.active {
-  border-color: #8a1c2c;
-  box-shadow:
-    0 0 0 3px rgba(138,28,44,0.25),
-    0 16px 34px rgba(0,0,0,0.22);
-  transform: scale(1.08);
-}
 
 /* mobile */
 @media (max-width: 480px) {
   .attendance-options {
     gap: 16px;
-  }
-
-  .attendance-btn {
-    width: 105px;
-    height: 105px;
   }
 }
 
@@ -1072,33 +1014,6 @@ input,select,textarea{
   0%   { transform: scale(1); }
   50%  { transform: scale(1.12); }
   100% { transform: scale(1); }
-}
-.attendance-btn {
-  flex: 1;
-  background: #fff;
-  border: 2px solid #ddd;
-  border-radius: 20px;
-  padding: 18px 12px;
-  cursor: pointer;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  transition: border-color 0.25s ease, transform 0.25s ease;
-}
-
-.attendance-btn:hover {
-  border-color: #bbb;
-  transform: translateY(-2px);
-}
-
-.attendance-btn span {
-  font-size: 13px;
-  color: #444;
-  text-align: center;
 }
 
 /* контейнер иконки */
@@ -1123,25 +1038,7 @@ input,select,textarea{
   transition: 0.3s ease;
 }
 
-/* ACTIVE — ЗАЛИВАЕТСЯ ТОЛЬКО ИКОНКА */
-.attendance-btn.active.yes .attendance-icon {
-  background: #7A1F2B;
-  border-color: #7A1F2B;
-}
-
-.attendance-btn.active.no .attendance-icon {
-  background: #9e9e9e;
-  border-color: #9e9e9e;
-}
-
-.attendance-btn.active .attendance-icon svg {
-  stroke: #fff;
-}
-
 /* пульсация ТОЛЬКО пока не выбрано */
-.attendance-btn.yes:not(.active) {
-  animation: heartPulse 1.8s infinite ease-in-out;
-}
 
   .attendance-block.error {
   animation: shake 0.4s;
@@ -1166,20 +1063,74 @@ input,select,textarea{
   z-index: 99998;
 }
 
-  .attendance-buttons {
+.attendance-buttons {
   display: flex;
-  gap: 16px;
-  width: 100%;
-  margin: 14px 0 4px;
-}
-  .attendance-btn svg {
-  color: #777;
-  transition: 0.3s ease;
+  gap: 14px;
+  margin: 12px 0;
 }
 
-.attendance-btn.active svg {
-  color: #fff;
+.attendance-btn {
+  flex: 1;
+  background: transparent;
+  border: 1.5px solid #ddd;
+  border-radius: 14px;
+  padding: 14px 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
+
+/* текст */
+.attendance-btn span {
+  font-size: 13px;
+  color: #555;
+}
+
+/* иконка */
+.attendance-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: #aaa;
+  stroke-width: 1.7;
+  transition: 0.25s ease;
+}
+
+/* hover — очень мягкий */
+.attendance-btn:hover {
+  border-color: #bbb;
+}
+
+/* ACTIVE — АКЦЕНТ, А НЕ ЗАЛИВКА */
+.attendance-btn.active.yes {
+  border-color: #7A1F2B;
+}
+
+.attendance-btn.active.yes svg {
+  stroke: #7A1F2B;
+}
+
+.attendance-btn.active.yes span {
+  color: #7A1F2B;
+}
+
+.attendance-btn.active.no {
+  border-color: #999;
+}
+
+.attendance-btn.active.no svg,
+.attendance-btn.active.no span {
+  stroke: #999;
+  color: #999;
+}
+
+
+  
 
 </style>
 </head>
@@ -1622,41 +1573,8 @@ function toggleStory(section) {
   font-family: inherit;
 }
 
-  .attendance-btn {
-  flex: 1;
-  background: #fff;
-  border: 2px solid #ddd;
-  border-radius: 20px;
-  padding: 18px 12px;
-  cursor: pointer;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  transition: 0.3s ease;
-}
-
-.attendance-btn span {
-  font-size: 13px;
-  line-height: 1.3;
-  color: #444;
-  text-align: center;
-}
-
-/* hover */
-.attendance-btn:hover {
-  border-color: #bbb;
-  transform: translateY(-2px);
-}
 
 /* ACTIVE — ЗАЛИВКА */
-.attendance-btn.active.yes {
-  background: linear-gradient(135deg, #7A1F2B, #9a3a46);
-  border-color: #7A1F2B;
-}
 
   
 .rsvp-form textarea {
@@ -1738,20 +1656,15 @@ function toggleStory(section) {
     class="attendance-btn yes"
     data-value="Приду с удовольствием">
 
-    <div class="attendance-icon">
-      <!-- heart outline (ровный, симметричный) -->
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M12 21
-                 C12 21 4 15.8 4 10
-                 C4 7.2 6.2 5 9 5
-                 C10.7 5 12 6.1 12 6.1
-                 C12 6.1 13.3 5 15 5
-                 C17.8 5 20 7.2 20 10
-                 C20 15.8 12 21 12 21Z"
-          stroke-width="1.7"
-          stroke-linejoin="round"/>
-      </svg>
-    </div>
+    <svg viewBox="0 0 24 24">
+      <path d="M12 21
+               C12 21 4 15.8 4 10
+               C4 7.2 6.2 5 9 5
+               C10.7 5 12 6.1 12 6.1
+               C12 6.1 13.3 5 15 5
+               C17.8 5 20 7.2 20 10
+               C20 15.8 12 21 12 21Z"/>
+    </svg>
 
     <span>Приду с удовольствием</span>
   </button>
@@ -1761,19 +1674,15 @@ function toggleStory(section) {
     class="attendance-btn no"
     data-value="К сожалению, не смогу">
 
-    <div class="attendance-icon">
-      <!-- clean X icon -->
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M6 6L18 18M18 6L6 18"
-          stroke-width="1.8"
-          stroke-linecap="round"/>
-      </svg>
-    </div>
+    <svg viewBox="0 0 24 24">
+      <path d="M6 6L18 18M18 6L6 18"/>
+    </svg>
 
     <span>К сожалению, не смогу</span>
   </button>
 
 </div>
+
 
 
   <select name="food">
