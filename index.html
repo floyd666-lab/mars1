@@ -1505,7 +1505,6 @@ document.querySelectorAll(".schedule-item").forEach(item => {
   mapTitle.innerText = t.mapTitle;
   mapPlace.innerText = t.mapPlace;
   name.placeholder = t.name;
-  sendBtn.innerText = t.send;
   
   coupleTitle.innerText = t.coupleTitle;
   groomRole.innerText = t.groomRole;
@@ -1684,10 +1683,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const overlay = document.getElementById("thankOverlay");
 const thankText = document.getElementById("thankText");
 const closeBtn = document.getElementById("thankClose");
-const canvas = document.getElementById("fxCanvas");
-const ctx = canvas.getContext("2d");
-
-let fxRunning = false;
 
 function showThankYou(name) {
   thankText.innerHTML = `Спасибо, <strong>${name}</strong>!<br>Мы будем Вас ждать 💍`;
