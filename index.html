@@ -1138,7 +1138,12 @@ input,select,textarea{
   100% { transform: translateX(0); }
 }
 
-  
+  #confettiCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99998;
+}
 </style>
 </head>
 
@@ -1810,7 +1815,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   text.innerHTML = `Спасибо, <b>${guestName}</b> 🤍<br>Будем ждать вас!`;
   overlay.classList.add("show");
-
+launchCelebration();
   closeBtn.onclick = () => {
     overlay.classList.remove("show");
   };
@@ -1833,6 +1838,70 @@ document.addEventListener("DOMContentLoaded", () => {
     <button class="close-btn" id="thankClose">Закрыть</button>
   </div>
 </div>
+<canvas id="confettiCanvas"></canvas>
+  <script>
+const canvas = document.getElementById("confettiCanvas");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+let particles = [];
+
+function createFirework(side) {
+  const count = 30;
+  const x = side === "left" ? 0 : canvas.width;
+  const angleBase = side === "left" ? 0 : Math.PI;
+
+  for (let i = 0; i < count; i++) {
+    const angle = angleBase + (Math.random() - 0.5);
+    const speed = Math.random() * 6 + 4;
+
+    particles.push({
+      x,
+      y: Math.random() * canvas.height * 0.6 + canvas.height * 0.2,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      gravity: 0.08,
+      life: 100,
+      size: Math.random() * 4 + 3,
+      color: `hsl(${Math.random() * 360}, 90%, 65%)`
+    });
+  }
+}
+
+function updateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach((p, i) => {
+    p.vy += p.gravity;
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life--;
+
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fill();
+
+    if (p.life <= 0) particles.splice(i, 1);
+  });
+
+  if (particles.length > 0) {
+    requestAnimationFrame(updateParticles);
+  }
+}
+
+function launchCelebration() {
+  createFirework("left");
+  createFirework("right");
+  updateParticles();
+}
+</script>
 
 </body>
 </html>
