@@ -1015,31 +1015,66 @@ input,select,textarea{
   50%  { transform: scale(1.12); }
   100% { transform: scale(1); }
 }
-
-/* контейнер иконки */
-.attendance-icon {
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  border: 2px solid #ddd;
-
+.attendance-choice {
   display: flex;
-  align-items: center;
   justify-content: center;
+  gap: 60px;
+  margin: 26px 0 18px;
+}
 
-  transition: all 0.3s ease;
+.choice-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+  user-select: none;
+  transition: 0.25s ease;
 }
 
 /* иконка */
-.attendance-icon svg {
-  width: 26px;
-  height: 26px;
-  stroke: #777;
-  transition: 0.3s ease;
+.choice-item svg {
+  width: 64px;
+  height: 64px;
+  fill: none;
+  stroke: #d8dbe3;
+  stroke-width: 1.8;
+  transition: 0.25s ease;
 }
 
-/* пульсация ТОЛЬКО пока не выбрано */
+/* текст */
+.choice-item span {
+  font-size: 13px;
+  text-align: center;
+  color: #8b8f99;
+  line-height: 1.35;
+  transition: 0.25s ease;
+}
 
+/* ACTIVE — как в примере */
+.choice-item.active.yes svg {
+  stroke: #e04a4a;
+}
+
+.choice-item.active.yes span {
+  color: #e04a4a;
+}
+
+.choice-item.active.no svg {
+  stroke: #bfc5d2;
+}
+
+.choice-item.active.no span {
+  color: #6b7280;
+}
+
+/* hover — почти незаметный */
+.choice-item:hover svg {
+  stroke: #b0b5c2;
+}
+
+/* контейнер иконки */
   .attendance-block.error {
   animation: shake 0.4s;
 }
@@ -1063,74 +1098,6 @@ input,select,textarea{
   z-index: 99998;
 }
 
-.attendance-buttons {
-  display: flex;
-  gap: 14px;
-  margin: 12px 0;
-}
-
-.attendance-btn {
-  flex: 1;
-  background: transparent;
-  border: 1.5px solid #ddd;
-  border-radius: 14px;
-  padding: 14px 10px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-/* текст */
-.attendance-btn span {
-  font-size: 13px;
-  color: #555;
-}
-
-/* иконка */
-.attendance-btn svg {
-  width: 20px;
-  height: 20px;
-  fill: none;
-  stroke: #aaa;
-  stroke-width: 1.7;
-  transition: 0.25s ease;
-}
-
-/* hover — очень мягкий */
-.attendance-btn:hover {
-  border-color: #bbb;
-}
-
-/* ACTIVE — АКЦЕНТ, А НЕ ЗАЛИВКА */
-.attendance-btn.active.yes {
-  border-color: #7A1F2B;
-}
-
-.attendance-btn.active.yes svg {
-  stroke: #7A1F2B;
-}
-
-.attendance-btn.active.yes span {
-  color: #7A1F2B;
-}
-
-.attendance-btn.active.no {
-  border-color: #999;
-}
-
-.attendance-btn.active.no svg,
-.attendance-btn.active.no span {
-  stroke: #999;
-  color: #999;
-}
-
-
-  
 
 </style>
 </head>
@@ -1649,11 +1616,11 @@ function toggleStory(section) {
     required
   >
 
-<div class="attendance-buttons" id="attendanceBlock">
+<div class="attendance-choice" id="attendanceBlock">
 
-  <button type="button"
+  <div
+    class="choice-item yes"
     id="yesBtn"
-    class="attendance-btn yes"
     data-value="Приду с удовольствием">
 
     <svg viewBox="0 0 24 24">
@@ -1666,20 +1633,20 @@ function toggleStory(section) {
                C20 15.8 12 21 12 21Z"/>
     </svg>
 
-    <span>Приду с удовольствием</span>
-  </button>
+    <span>Приду<br>с удовольствием</span>
+  </div>
 
-  <button type="button"
+  <div
+    class="choice-item no"
     id="noBtn"
-    class="attendance-btn no"
     data-value="К сожалению, не смогу">
 
     <svg viewBox="0 0 24 24">
       <path d="M6 6L18 18M18 6L6 18"/>
     </svg>
 
-    <span>К сожалению, не смогу</span>
-  </button>
+    <span>К сожалению,<br>не смогу</span>
+  </div>
 
 </div>
 
@@ -1725,7 +1692,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("rsvpForm");
   const sendBtn = document.getElementById("sendBtn");
 
-  const buttons = document.querySelectorAll(".attendance-btn");
+  const buttons = document.querySelectorAll(".choice-item");
   const attendanceInput = document.getElementById("attendanceInput");
   const attendanceBlock = document.getElementById("attendanceBlock");
 
