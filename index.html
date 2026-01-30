@@ -1379,11 +1379,19 @@ secondsLabel: "seconds",
 
 function setLang(lang) {
   localStorage.setItem("lang", lang);
+// подсветка активного языка
+document.querySelectorAll(".lang-switch span").forEach(el => {
+  el.classList.remove("active");
+});
 
+const activeLang = document.getElementById(`lang-${lang}`);
+if (activeLang) {
+  activeLang.classList.add("active");
+}
   const t = texts[lang];
 
   // helper — безопасно устанавливает текст
-  function setText(id, value) {
+  function setText(id, value){
     const el = document.getElementById(id);
     if (el && value !== undefined) {
       el.innerText = value;
@@ -1393,6 +1401,10 @@ function setLang(lang) {
   setText("phrase", t.phrase);
   setText("heroDate", t.heroDate);
   setText("storyTitle", t.storyTitle);
+  const storyText = document.getElementById("storyText");
+if (storyText && t.storyText) {
+  storyText.innerHTML = t.storyText;
+}
   setText("attendanceTitle", t.attendanceTitle);
   setText("giftsTitle", t.giftsTitle);
   setText("giftsText", t.giftsText);
