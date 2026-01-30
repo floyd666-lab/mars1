@@ -1163,11 +1163,7 @@ input,select,textarea{
   
 
   <div class="story-inner">
-    <p class="story-text">
-      Всё началось с простого разговора, который мы тогда
-      не восприняли всерьёз…<br><br>
-      Но именно он стал началом нашей общей истории ❤️
-    </p>
+    <p class="story-text" id="storyText"></p>
 
     <div class="gallery">
       <img src="photos/photo1.jpg">
@@ -1257,13 +1253,13 @@ const texts = {
 coupleTitle: "Жених и невеста",
 groomRole: "Жених",
 brideRole: "Невеста",
-    
+    storyText: "Их встреча началась с простой прогулки, ставшей особенной — смех, разговоры и сердце, которое она приняла не сразу.Отменённое кино привело их в горы, к звёздам и первому путешествию вдвоём.<br><br>Под ночным небом они загадали одно желание — быть вместе всегда.",
     attendanceTitle: "Сможете ли вы прийти?",
 
     phrase:"Разделите с нами самый счастливый день!",
     storyTitle:"Наша история",
     giftsTitle:"Пожелания по подаркам",
-    giftsText:"Самый ценный подарок для нас — ваше присутствие Просим воздержаться от живых цветов.",
+    giftsText:"Самый ценный подарок для нас — ваше присутствие <br><br>Просим воздержаться от живых цветов.",
     dressTitle:"Dress Code",
     dressText:"Будем благодарны, если вы придержитесь этой палитры:",
     scheduleTitle:"Расписание",
@@ -1298,6 +1294,7 @@ secondsLabel: "секунд",
 coupleTitle: "Kuyov va Kelin",
 groomRole: "Kuyov",
 brideRole: "Kelin",
+    storyText: "Ularning uchrashuvi oddiy sayrdan boshlandi, ammo tez orada o‘ziga xos bo‘lib qoldi — kulgu, suhbatlar va u darhol qabul qilmagan yurak.Bekor bo‘lgan kino ularni tog‘larga, yulduzlarga va birinchi birga sayohatga olib bordi.<br><br>Tungi osmon ostida ular bitta tilak tilashdi — har doim birga bo‘lish.",
     phrase:"Hayotimizdagi eng baxtli kunni biz bilan birga o‘tkazing!",
     storyTitle:"Bizning hikoyamiz",
     giftsTitle:"Sovg‘alar haqida",
@@ -1339,6 +1336,7 @@ secondsLabel: "soniya",
 coupleTitle: "The couple",
 groomRole: "Groom",
 brideRole: "Bride",
+    storyText: "Their meeting began with a simple walk that quickly became special — laughter, conversations, and a heart she didn’t accept right away.A canceled movie led them to the mountains, the stars, and their first journey together.<br><br>Under the night sky, they made one wish — to be together always.",
     phrase:"Share with us the happiest day of our lives!",
     storyTitle:"Our Story",
     giftsTitle:"Gifts",
