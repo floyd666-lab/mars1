@@ -1510,15 +1510,15 @@ function toggleStory(section) {
 <!-- ================= RSVP FORM ================= -->
 <style>
 /* ===== RSVP SECTION ===== */
-..rsvp-section {
-  max-width: 420px;          /* как у остальных секций */
-  margin: 30px 16px;         /* ← ВАЖНО: те же отступы */
-  background: #fbf6f2;
-  border-radius: 24px;       /* как .section */
-  padding: 60px 24px;        /* как .section */
+.rsvp-section {
+  background: #fbf6f2;          /* фон карточки */
+  border-radius: 24px;
+  padding: 60px 24px;
   box-shadow: 0 12px 40px rgba(0,0,0,0.25);
-}
 
+  max-width: 420px;
+  margin: 30px auto;            /* ВАЖНО: auto */
+}
 .rsvp-title {
   text-align: center;
   font-size: 22px;
@@ -1604,8 +1604,9 @@ function toggleStory(section) {
   filter: grayscale(0.6);
 }
 </style>
-
+<div class="container">
 <div class="rsvp-section">
+  
   <div class="rsvp-title">Подтвердите присутствие</div>
 <form id="rsvpForm">
 
@@ -1689,6 +1690,7 @@ function toggleStory(section) {
 </form>
  
 </div>
+  </div>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
