@@ -1321,14 +1321,6 @@ input,select,textarea{
 </div>
 <div class="divider"></div>
 
-  
-<!-- THANK YOU POPUP -->
-<div class="thank-you" id="thankYou">
-  <div class="thank-you-content">
-    <p id="thankYouText"></p>
-    <button id="closeThankYou">Закрыть</button>
-  </div>
-</div>
 
 <script>
 let confettiInterval = null;
@@ -1486,12 +1478,6 @@ secondsLabel: "seconds",
   }
 };
 // === form elements ===
-const status = document.getElementById("status");
-const food = document.getElementById("food");
-const alcohol = document.getElementById("alcohol");
-const child = document.getElementById("child");
-const name = document.getElementById("name");
-const sendBtn = document.getElementById("sendBtn");
 
 function setLang(lang){
   localStorage.setItem("lang",lang);
@@ -1518,37 +1504,20 @@ document.querySelectorAll(".schedule-item").forEach(item => {
 
   mapTitle.innerText = t.mapTitle;
   mapPlace.innerText = t.mapPlace;
-  foodTitle.innerText = t.foodTitle;
-  alcoholTitle.innerText = t.alcoholTitle;
-  childTitle.innerText = t.childTitle;
-  musicTitle.innerText = t.musicTitle;
   name.placeholder = t.name;
   sendBtn.innerText = t.send;
-
+  
   coupleTitle.innerText = t.coupleTitle;
   groomRole.innerText = t.groomRole;
   brideRole.innerText = t.brideRole;
-
+  
   countdownTitle.innerText = t.countdownTitle;
   daysLabel.innerText = t.daysLabel;
   hoursLabel.innerText = t.hoursLabel;
   minutesLabel.innerText = t.minutesLabel;
   secondsLabel.innerText = t.secondsLabel;
 
-  fillSelect(status,t.status);
-  fillSelect(food,t.food);
-  fillSelect(alcohol,t.alcohol);
-  fillSelect(child,t.child);
-}
 
-
-function fillSelect(select,arr){
-  select.innerHTML="";
-  arr.forEach(v=>{
-    const o=document.createElement("option");
-    o.text=v;
-    select.appendChild(o);
-  });
 }
 
 setLang(localStorage.getItem("lang") || "ru");
@@ -1705,7 +1674,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   showThankYou(name);
   startFX();
-});
+})
     .catch(err => {
       console.error("Ошибка отправки", err);
       alert("Ошибка отправки формы");
