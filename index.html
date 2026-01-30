@@ -966,6 +966,67 @@ input,select,textarea{
     box-shadow 0.25s ease,
     filter 0.25s ease;
 }
+  /* ===== ATTENDANCE HEART SELECT ===== */
+
+.attendance-block {
+  margin-top: 20px;
+}
+
+.attendance-title {
+  font-size: 15px;
+  margin-bottom: 14px;
+  color: #555;
+}
+
+.attendance-options {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+
+.attendance-btn {
+  background: #fff;
+  border: 2px solid #eee;
+  border-radius: 20px;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 34px;
+  transition: 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.attendance-btn span {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #555;
+  line-height: 1.3;
+}
+
+.attendance-btn.yes {
+  color: #c0392b;
+}
+
+.attendance-btn.no {
+  color: #999;
+}
+
+.attendance-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.15);
+}
+
+.attendance-btn.active {
+  border-color: #7A1F2B;
+  box-shadow: 0 0 0 3px rgba(122,31,43,0.15);
+}
+
 </style>
 </head>
 
@@ -1371,6 +1432,31 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 </script>
+<!-- ATTENDANCE HEART SELECT -->
+<div class="attendance-block">
+  <div class="attendance-title" id="attendanceTitle">
+    Сможете ли вы прийти?
+  </div>
+
+  <div class="attendance-options">
+    <button type="button"
+            class="attendance-btn yes"
+            data-value="Я приду">
+      ❤️
+      <span>Приду<br>с удовольствием</span>
+    </button>
+
+    <button type="button"
+            class="attendance-btn no"
+            data-value="К сожалению, не смогу">
+      ✖
+      <span>К сожалению,<br>не смогу</span>
+    </button>
+  </div>
+
+  <!-- СКРЫТОЕ ПОЛЕ ДЛЯ ОТПРАВКИ -->
+  <input type="hidden" name="attendance" id="attendanceInput" required>
+</div>
 
 
 <script>
