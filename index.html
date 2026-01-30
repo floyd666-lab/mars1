@@ -1778,11 +1778,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (sendBtn.disabled) return;
 
     const formData = new FormData(form);
-// ⚠️ ЯВНО ДОБАВЛЯЕМ attendance (фикс для hidden input)
-formData.set("attendance", attendanceInput.value);
-    for (let pair of formData.entries()) {
-  console.log(pair[0], pair[1]);
-}
+// 🔥 ЯВНО добавляем ВСЕ поля
+formData.set("attendance", document.getElementById("attendanceInput").value);
+formData.set("food", form.querySelector('select[name="food"]').value);
+formData.set("alcohol", form.querySelector('select[name="alcohol"]').value);
+formData.set("child", form.querySelector('select[name="child"]').value);
+    
     fetch("https://script.google.com/macros/s/AKfycbzMC5dpp0Tp4lBkMwSKlTVhk3L9VwpqjROcqAGFkztPqnyEwJKas9gV1k7xcM9Qy3gt/exec", {
       method: "POST",
       body: formData
