@@ -1599,14 +1599,33 @@ function toggleStory(section) {
 
 /* ===== BUTTON ===== */
 .rsvp-submit {
-  margin-top: 10px;
-  padding: 14px;
+  margin: 24px auto 0;     /* ⬅️ центрируем */
+  display: block;
+  width: 70%;              /* ⬅️ шире обычной */
+  max-width: 260px;        /* ⬅️ аккуратный предел */
+  padding: 14px 0;
   border-radius: 999px;
   border: none;
   font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
   color: #fff;
   cursor: pointer;
-  background: linear-gradient(180deg, #8a1c2c, #6f0f1c);
+  background: linear-gradient(
+    135deg,
+    #6f0f1c 0%,
+    #8a1c2c 45%,
+    #a8323f 100%
+  );
+
+  box-shadow:
+    0 10px 26px rgba(111, 15, 28, 0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.15);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
 }
   .rsvp-submit:disabled {
   opacity: 0.5;
