@@ -1027,6 +1027,118 @@ input,select,textarea{
   box-shadow: 0 0 0 3px rgba(122,31,43,0.15);
 }
 
+  /* ===== ATTENDANCE HEART SELECT ===== */
+
+.attendance-block {
+  margin: 20px 0 10px;
+  text-align: center;
+}
+
+.attendance-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 18px;
+  color: rgba(255,255,255,0.85);
+}
+
+.attendance-options {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+}
+
+.attendance-btn {
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  border-radius: 26px;
+  border: 2px solid transparent;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 34px;
+  transition: all 0.3s ease;
+
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.18),
+    inset 0 0 0 1px rgba(0,0,0,0.05);
+}
+
+.attendance-btn span {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.25;
+  color: #333;
+}
+
+/* сердце */
+.attendance-btn.yes {
+  color: #c62828;
+}
+
+/* крестик */
+.attendance-btn.no {
+  color: #9e9e9e;
+}
+
+/* hover */
+.attendance-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* active */
+.attendance-btn.active {
+  border-color: #8a1c2c;
+  box-shadow:
+    0 0 0 3px rgba(138,28,44,0.25),
+    0 16px 34px rgba(0,0,0,0.22);
+  transform: scale(1.08);
+}
+
+/* mobile */
+@media (max-width: 480px) {
+  .attendance-options {
+    gap: 16px;
+  }
+
+  .attendance-btn {
+    width: 105px;
+    height: 105px;
+  }
+}
+
+  @keyframes heartPulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+/* пульсация ТОЛЬКО пока не выбрано */
+.attendance-btn.yes:not(.active) {
+  animation: heartPulse 1.8s infinite ease-in-out;
+}
+
+  .attendance-block.error {
+  animation: shake 0.4s;
+}
+
+.attendance-block.error .attendance-btn {
+  border-color: #c62828;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-6px); }
+  100% { transform: translateX(0); }
+}
+
+  
 </style>
 </head>
 
@@ -1265,12 +1377,18 @@ brideRole: "Kelin",
     dressTitle:"Dress Code",
     dressText:"Ushbu ranglarga amal qilsangiz xursand bo‘lamiz:",
     scheduleTitle:"Dastur",
+
+    attendanceTitle: "Сможете ли вы прийти?",
+
 schedule1: "18:00 — Mehmonlarni kutib olish",
 schedule2: "19:00 — Banket boshlanishi",
 schedule3: "20:00 — Milan Band Guruh",
 schedule4: "21:00 — Toy raqsi",
 schedule5: "22:00 — Diskoteka",
 schedule6: "23:00 — Yakunlanish",
+
+    attendanceTitle: "Tadbirda qatnasha olasizmi?",
+
     mapTitle:"Qanday topish mumkin",
     mapPlace:"Toshkent, Diamond Hall",
     confirmTitle:"Ishtirokingizni tasdiqlang",
@@ -1309,6 +1427,10 @@ schedule3: "8:00 PM — Live Music: Milan Band",
 schedule4: "9:00 PM — First Dance",
 schedule5: "10:00 PM — Party Time",
 schedule6: "11:00 PM — Celebration Ends",
+
+    attendanceTitle: "Will you be attending?",
+
+    
     mapTitle:"How to find us",
     mapPlace:"Tashkent, Diamond Hall",
     confirmTitle:"Please confirm your attendance",
@@ -1343,6 +1465,7 @@ function setLang(lang){
   phrase.innerText = t.phrase;
   heroDate.innerText = t.heroDate;
   storyTitle.innerText = t.storyTitle;
+  attendanceTitle.innerText = t.attendanceTitle;
   giftsTitle.innerText = t.giftsTitle;
   giftsText.innerText = t.giftsText;
   dressTitle.innerText = t.dressTitle;
@@ -1434,9 +1557,7 @@ setInterval(updateCountdown, 1000);
 </script>
 <!-- ATTENDANCE HEART SELECT -->
 <div class="attendance-block">
-  <div class="attendance-title" id="attendanceTitle">
-    Сможете ли вы прийти?
-  </div>
+  <div class="attendance-title" id="attendanceTitle"></div>
 
   <div class="attendance-options">
     <button type="button"
