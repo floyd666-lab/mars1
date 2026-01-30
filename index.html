@@ -1685,28 +1685,30 @@ function toggleStory(section) {
 
 
 
-  <select name="food">
-    <option value="">Предпочтения по еде</option>
-    <option>Без ограничений</option>
-    <option>Не ем мясо</option>
-    <option>Не ем рыбу</option>
-    <option>Вегетарианец</option>
-  </select>
+ <select name="food" required>
+  <option value="">Предпочтения по еде</option>
+  <option value="Без ограничений">Без ограничений</option>
+  <option value="Не ем мясо">Не ем мясо</option>
+  <option value="Не ем рыбу">Не ем рыбу</option>
+  <option value="Вегетарианец">Вегетарианец</option>
+</select>
 
-  <select name="alcohol">
-    <option value="">Алкоголь</option>
-    <option>Вино</option>
-    <option>Шампанское</option>
-    <option>Виски / Коньяк</option>
-    <option>Водка</option>
-    <option>Не пью алкоголь</option>
-  </select>
 
-  <select name="child">
-    <option value="">С вами будет ребёнок?</option>
-    <option>Нет</option>
-    <option>Да</option>
-  </select>
+  <select name="alcohol" required>
+  <option value="">Алкоголь</option>
+  <option value="Вино">Вино</option>
+  <option value="Шампанское">Шампанское</option>
+  <option value="Виски / Коньяк">Виски / Коньяк</option>
+  <option value="Водка">Водка</option>
+  <option value="Не пью алкоголь">Не пью алкоголь</option>
+</select>
+
+
+  <select name="child" required>
+  <option value="">С вами будет ребёнок?</option>
+  <option value="Нет">Нет</option>
+  <option value="Да">Да</option>
+</select>
 
   <textarea
     name="music"
@@ -1776,7 +1778,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (sendBtn.disabled) return;
 
     const formData = new FormData(form);
-
+// ⚠️ ЯВНО ДОБАВЛЯЕМ attendance (фикс для hidden input)
+formData.set("attendance", attendanceInput.value);
+    for (let pair of formData.entries()) {
+  console.log(pair[0], pair[1]);
+}
     fetch("https://script.google.com/macros/s/AKfycbzMC5dpp0Tp4lBkMwSKlTVhk3L9VwpqjROcqAGFkztPqnyEwJKas9gV1k7xcM9Qy3gt/exec", {
       method: "POST",
       body: formData
