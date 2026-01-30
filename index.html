@@ -1289,44 +1289,6 @@ input,select,textarea{
 
 
 <script>
-let confettiInterval = null;
-
-function startConfetti() {
-  const colors = ["#6f0f1c", "#8a1c2c", "#a8323f", "#f2c94c", "#f7e7ce"];
-  const sides = ["confetti-left", "confetti-right"];
-
-  confettiInterval = setInterval(() => {
-    sides.forEach(side => {
-      const container = document.getElementById(side);
-      if (!container) return;
-
-      const heart = document.createElement("div");
-      heart.className = "confetti-heart";
-      heart.textContent = "❤";
-
-      heart.style.left = Math.random() * 100 + "%";
-      heart.style.color =
-        colors[Math.floor(Math.random() * colors.length)];
-      heart.style.fontSize = 14 + Math.random() * 10 + "px";
-
-      container.appendChild(heart);
-
-      setTimeout(() => heart.remove(), 5200);
-    });
-  }, 250); // каждые 250 мс появляются новые сердечки
-}
-
-function stopConfetti() {
-  clearInterval(confettiInterval);
-  confettiInterval = null;
-
-  document.getElementById("confetti-left").innerHTML = "";
-  document.getElementById("confetti-right").innerHTML = "";
-}
-</script>
-
-  
-<script>
 const texts = {
   ru: {
     heroDate: "11 апреля 2026",
@@ -1460,9 +1422,11 @@ function setLang(lang){
 
   document.querySelectorAll(".lang-switch span").forEach(el=>el.classList.remove("active"));
   document.getElementById("lang-"+lang).classList.add("active");
+  
 
   const t = texts[lang]; // ← ПЕРВЫМ ДЕЛОМ
-
+const guestName = document.getElementById("guestName");
+  const attendanceTitle = document.getElementById("attendanceTitle");
   phrase.innerText = t.phrase;
   heroDate.innerText = t.heroDate;
   storyTitle.innerText = t.storyTitle;
@@ -1481,7 +1445,7 @@ document.querySelectorAll(".schedule-item").forEach(item => {
 
   mapTitle.innerText = t.mapTitle;
   mapPlace.innerText = t.mapPlace;
-  name.placeholder = t.name;
+  guestName.placeholder = t.name;
   
   coupleTitle.innerText = t.coupleTitle;
   groomRole.innerText = t.groomRole;
@@ -1496,7 +1460,6 @@ document.querySelectorAll(".schedule-item").forEach(item => {
 
 }
 
-setLang(localStorage.getItem("lang") || "ru");
   // ===== INIT LANGUAGE ON PAGE LOAD =====
 document.addEventListener("DOMContentLoaded", () => {
   const savedLang = localStorage.getItem("lang") || "ru";
