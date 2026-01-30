@@ -1815,10 +1815,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   text.innerHTML = `Спасибо, <b>${guestName}</b> 🤍<br>Будем ждать вас!`;
   overlay.classList.add("show");
-launchCelebration();
+startCelebration();
   closeBtn.onclick = () => {
-    overlay.classList.remove("show");
-  };
+  overlay.classList.remove("show");
+  stopCelebration();
+};
 
   form.reset();
   sendBtn.disabled = true;
@@ -1868,8 +1869,8 @@ function createFirework(side) {
       vy: Math.sin(angle) * speed,
       gravity: 0.08,
       life: 100,
-      size: Math.random() * 4 + 3,
-      color: `hsl(${Math.random() * 360}, 90%, 65%)`
+      size: Math.random() * 6 + 6,
+      color: Math.random() > 0.5 ? "#ffffff" : "#7A1F2B"
     });
   }
 }
@@ -1883,24 +1884,57 @@ function updateParticles() {
     p.y += p.vy;
     p.life--;
 
-    ctx.fillStyle = p.color;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-    ctx.fill();
+drawHeart(p.x, p.y, p.size, p.color);
 
     if (p.life <= 0) particles.splice(i, 1);
   });
 
-  if (particles.length > 0) {
-    requestAnimationFrame(updateParticles);
-  }
+  if (animationRunning) {
+  requestAnimationFrame(updateParticles);
+}
 }
 
-function launchCelebration() {
-  createFirework("left");
-  createFirework("right");
-  updateParticles();
+    let celebrationInterval = null;
+let animationRunning = false;
+
+function startCelebration() {
+  if (celebrationInterval) return;
+
+  animationRunning = true;
+
+  celebrationInterval = setInterval(() => {
+    createFirework("left");
+    createFirework("right");
+  }, 350);
+
+  requestAnimationFrame(updateParticles);
 }
+
+function stopCelebration() {
+  animationRunning = false;
+  clearInterval(celebrationInterval);
+  celebrationInterval = null;
+  particles = [];
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+    function drawHeart(x, y, size, color) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(size / 10, size / 10);
+
+  ctx.beginPath();
+  ctx.moveTo(0, -3);
+  ctx.bezierCurveTo(-5, -8, -15, -2, 0, 10);
+  ctx.bezierCurveTo(15, -2, 5, -8, 0, -3);
+  ctx.closePath();
+
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.restore();
+}
+
+
 </script>
 
 </body>
