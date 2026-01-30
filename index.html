@@ -1099,6 +1099,34 @@ input,select,textarea{
   pointer-events: none;
   z-index: 99998;
 }
+.scroll-down {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.scroll-down svg {
+  width: 28px;
+  height: 28px;
+  stroke: #ffffff;
+  stroke-width: 1.8;
+  fill: none;
+  opacity: 0.8;
+
+  animation: scrollBounce 1.6s ease-in-out infinite;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-down:hover svg {
+  opacity: 1;
+}
+
+@keyframes scrollBounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(8px); }
+  100% { transform: translateY(0); }
+}
 
 
 </style>
@@ -1149,9 +1177,15 @@ input,select,textarea{
         <div class="time-box">
           <span id="seconds" class="flip">00</span>
           <small id="secondsLabel">Секунд</small>
+          
         </div>
       </div>
     </div>
+    <div class="scroll-down" id="scrollToStory">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 5v14M12 19l-6-6M12 19l6-6"/>
+  </svg>
+</div>
 
   </div>
 </div>
@@ -1473,7 +1507,17 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(section);
   });
 
-});
+const scrollBtn = document.getElementById("scrollToStory");
+const storySection = document.getElementById("story");
+
+if (scrollBtn && storySection) {
+  scrollBtn.addEventListener("click", () => {
+    storySection.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
+}});
 </script>
 <script>
 const weddingDate = new Date("2026-04-11T19:00:00").getTime();
