@@ -1674,6 +1674,11 @@ function toggleStory(section) {
   cursor: pointer;
   background: linear-gradient(180deg, #8a1c2c, #6f0f1c);
 }
+  .rsvp-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(0.6);
+}
 </style>
 
 <div class="rsvp-section">
@@ -1729,7 +1734,7 @@ function toggleStory(section) {
     rows="3"
   ></textarea>
 
-  <button type="submit" id="sendBtn" class="rsvp-submit">Отправить</button>
+  <button type="submit" id="sendBtn" class="rsvp-submit" disabled>Отправить</button>
 
 </form>
  
