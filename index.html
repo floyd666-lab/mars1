@@ -1752,11 +1752,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", e => {
     e.preventDefault();
+const name = form.querySelector('[name="name"]');
+const food = form.querySelector('[name="food"]');
+const alcohol = form.querySelector('[name="alcohol"]');
+const child = form.querySelector('[name="child"]');
+const music = form.querySelector('[name="music"]');
+
+// очистка предыдущих ошибок
+[name, food, alcohol, child, music].forEach(el => {
+  el.style.borderColor = "";
+});
+
+// 1️⃣ Имя
+if (!name.value.trim()) {
+  name.style.borderColor = "#c62828";
+  name.focus();
+  return;
+}
+
+// 2️⃣ Присутствие (❤️ / ✖️)
 if (!input.value) {
   block.classList.add("error");
   setTimeout(() => block.classList.remove("error"), 600);
   return;
 }
+
+// 3️⃣ Еда
+if (!food.value) {
+  food.style.borderColor = "#c62828";
+  food.focus();
+  return;
+}
+
+// 4️⃣ Алкоголь
+if (!alcohol.value) {
+  alcohol.style.borderColor = "#c62828";
+  alcohol.focus();
+  return;
+}
+
+// 5️⃣ Ребёнок
+if (!child.value) {
+  child.style.borderColor = "#c62828";
+  child.focus();
+  return;
+}
+
+// 6️⃣ Музыка
+if (!music.value.trim()) {
+  music.style.borderColor = "#c62828";
+  music.focus();
+  return;
+}
+
     const formData = new FormData(form);
 
     fetch("https://script.google.com/macros/s/AKfycbzdRsglDphH5c6bXGIFVgQbAafCuI5Z0d-w_Hz70Wu-URMzknS5iu8QtQfoQ-lxYKMI/exec", {
