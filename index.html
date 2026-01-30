@@ -1801,14 +1801,26 @@ document.addEventListener("DOMContentLoaded", () => {
       body: formData
     })
     .then(() => {
-      
-      form.reset();
-      sendBtn.disabled = true;
-      attendanceInput.value = "";
-      buttons.forEach(b => b.classList.remove("active"));
-    });
-  });
 
+  const guestName = nameInput.value.trim();
+
+  const overlay = document.getElementById("thankOverlay");
+  const text = document.getElementById("thankText");
+  const closeBtn = document.getElementById("thankClose");
+
+  text.innerHTML = `Спасибо, <b>${guestName}</b> 🤍<br>Будем ждать вас!`;
+  overlay.classList.add("show");
+
+  closeBtn.onclick = () => {
+    overlay.classList.remove("show");
+  };
+
+  form.reset();
+  sendBtn.disabled = true;
+  attendanceInput.value = "";
+  buttons.forEach(b => b.classList.remove("active"));
+});
+  });
 });
 </script>
 
