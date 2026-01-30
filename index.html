@@ -1690,7 +1690,7 @@ function toggleStory(section) {
     required
   >
 
-  <div class="attendance-buttons">
+  <div class="attendance-buttons" id="attendanceBlock">
     <button type="button" id="yesBtn" class="attendance-btn yes" data-value="Приду с удовольствием">
       ❤️<span>Приду с удовольствием</span>
     </button>
@@ -1739,7 +1739,7 @@ function toggleStory(section) {
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".attendance-btn");
   const input = document.getElementById("attendanceInput");
-  
+  const block = document.getElementById("attendanceBlock");
   const form = document.getElementById("rsvpForm");
 
   buttons.forEach(btn => {
@@ -1752,7 +1752,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", e => {
     e.preventDefault();
-
+if (!input.value) {
+  block.classList.add("error");
+  setTimeout(() => block.classList.remove("error"), 600);
+  return;
+}
     const formData = new FormData(form);
 
     fetch("https://script.google.com/macros/s/AKfycbzdRsglDphH5c6bXGIFVgQbAafCuI5Z0d-w_Hz70Wu-URMzknS5iu8QtQfoQ-lxYKMI/exec", {
@@ -1766,6 +1770,7 @@ document.addEventListener("DOMContentLoaded", () => {
       input.value = "";
     });
   });
+  
 });
 </script>
 <!-- ================= END RSVP FORM ================= -->
