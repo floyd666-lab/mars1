@@ -1417,48 +1417,54 @@ secondsLabel: "seconds",
 };
 // === form elements ===
 
-function setLang(lang){
-  localStorage.setItem("lang",lang);
+function setLang(lang) {
+  localStorage.setItem("lang", lang);
 
-  document.querySelectorAll(".lang-switch span").forEach(el=>el.classList.remove("active"));
-  document.getElementById("lang-"+lang).classList.add("active");
-  
+  const t = texts[lang];
 
-  const t = texts[lang]; // ← ПЕРВЫМ ДЕЛОМ
-const guestName = document.getElementById("guestName");
-  const attendanceTitle = document.getElementById("attendanceTitle");
-  phrase.innerText = t.phrase;
-  heroDate.innerText = t.heroDate;
-  storyTitle.innerText = t.storyTitle;
-  attendanceTitle.innerText = t.attendanceTitle;
-  giftsTitle.innerText = t.giftsTitle;
-  giftsText.innerText = t.giftsText;
-  dressTitle.innerText = t.dressTitle;
-  dressText.innerText = t.dressText;
-  scheduleTitle.innerText = t.scheduleTitle;
-document.querySelectorAll(".schedule-item").forEach(item => {
-  const key = item.dataset.key;
-  if (t[key]) {
-    item.innerText = t[key];
+  // helper — безопасно устанавливает текст
+  function setText(id, value) {
+    const el = document.getElementById(id);
+    if (el && value !== undefined) {
+      el.innerText = value;
+    }
   }
-});
 
-  mapTitle.innerText = t.mapTitle;
-  mapPlace.innerText = t.mapPlace;
-  guestName.placeholder = t.name;
-  
-  coupleTitle.innerText = t.coupleTitle;
-  groomRole.innerText = t.groomRole;
-  brideRole.innerText = t.brideRole;
-  
-  countdownTitle.innerText = t.countdownTitle;
-  daysLabel.innerText = t.daysLabel;
-  hoursLabel.innerText = t.hoursLabel;
-  minutesLabel.innerText = t.minutesLabel;
-  secondsLabel.innerText = t.secondsLabel;
+  setText("phrase", t.phrase);
+  setText("heroDate", t.heroDate);
+  setText("storyTitle", t.storyTitle);
+  setText("attendanceTitle", t.attendanceTitle);
+  setText("giftsTitle", t.giftsTitle);
+  setText("giftsText", t.giftsText);
+  setText("dressTitle", t.dressTitle);
+  setText("dressText", t.dressText);
+  setText("scheduleTitle", t.scheduleTitle);
+  setText("mapTitle", t.mapTitle);
+  setText("mapPlace", t.mapPlace);
+  setText("countdownTitle", t.countdownTitle);
 
+  // schedule items
+  document.querySelectorAll(".schedule-item").forEach(item => {
+    const key = item.dataset.key;
+    if (t[key]) item.innerText = t[key];
+  });
 
+  // name placeholder
+  const guestName = document.getElementById("guestName");
+  if (guestName && t.name) {
+    guestName.placeholder = t.name;
+  }
+
+  setText("coupleTitle", t.coupleTitle);
+  setText("groomRole", t.groomRole);
+  setText("brideRole", t.brideRole);
+
+  setText("daysLabel", t.daysLabel);
+  setText("hoursLabel", t.hoursLabel);
+  setText("minutesLabel", t.minutesLabel);
+  setText("secondsLabel", t.secondsLabel);
 }
+
 
   // ===== INIT LANGUAGE ON PAGE LOAD =====
 document.addEventListener("DOMContentLoaded", () => {
