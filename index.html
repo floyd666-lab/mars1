@@ -1691,11 +1691,11 @@ function toggleStory(section) {
   >
 
   <div class="attendance-buttons">
-    <button type="button" id="yesBtn" class="att-btn yes">
+    <button type="button" id="yesBtn" class="attendance-btn yes" data-value="Приду с удовольствием">
       ❤️<span>Приду с удовольствием</span>
     </button>
 
-    <button type="button" id="noBtn" class="att-btn no">
+    <button type="button" id="noBtn" class="attendance-btn no" data-value="К сожалению, не смогу">
       ✖️<span>К сожалению, не смогу</span>
     </button>
   </div>
@@ -1729,7 +1729,7 @@ function toggleStory(section) {
     rows="3"
   ></textarea>
 
-  <button type="submit" id="sendBtn">Отправить</button>
+  <button type="submit" id="sendBtn" class="rsvp-submit">Отправить</button>
 
 </form>
  
@@ -1739,7 +1739,7 @@ function toggleStory(section) {
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".attendance-btn");
   const input = document.getElementById("attendanceInput");
-  const block = document.getElementById("attendanceBlock");
+  
   const form = document.getElementById("rsvpForm");
 
   buttons.forEach(btn => {
@@ -1752,12 +1752,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", e => {
     e.preventDefault();
-
-    if (!input.value) {
-      block.classList.add("error");
-      setTimeout(() => block.classList.remove("error"), 500);
-      return;
-    }
 
     const formData = new FormData(form);
 
@@ -1775,23 +1769,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 <!-- ================= END RSVP FORM ================= -->
-<script>
-  const attendanceInput = document.getElementById("attendanceInput");
-  const yesBtn = document.getElementById("yesBtn");
-  const noBtn = document.getElementById("noBtn");
-
-  yesBtn.onclick = () => {
-    attendanceInput.value = "Приду с удовольствием";
-    yesBtn.classList.add("active");
-    noBtn.classList.remove("active");
-  };
-
-  noBtn.onclick = () => {
-    attendanceInput.value = "К сожалению, не смогу";
-    noBtn.classList.add("active");
-    yesBtn.classList.remove("active");
-  };
-</script>
 
   
 </body>
