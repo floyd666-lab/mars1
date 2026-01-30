@@ -1777,17 +1777,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // финальная защита (на всякий)
     if (sendBtn.disabled) return;
 
-    const formData = new FormData(form);
-// 🔥 ЯВНО добавляем ВСЕ поля
-formData.set("attendance", document.getElementById("attendanceInput").value);
-formData.set("food", form.querySelector('select[name="food"]').value);
-formData.set("alcohol", form.querySelector('select[name="alcohol"]').value);
-formData.set("child", form.querySelector('select[name="child"]').value);
-    
-    fetch("https://script.google.com/macros/s/AKfycbzMC5dpp0Tp4lBkMwSKlTVhk3L9VwpqjROcqAGFkztPqnyEwJKas9gV1k7xcM9Qy3gt/exec", {
-      method: "POST",
-      body: formData
-    })
+    const data = new URLSearchParams({
+  name: form.querySelector('[name="name"]').value,
+  attendance: document.getElementById("attendanceInput").value,
+  food: form.querySelector('[name="food"]').value,
+  alcohol: form.querySelector('[name="alcohol"]').value,
+  child: form.querySelector('[name="child"]').value,
+  music: form.querySelector('[name="music"]').value
+});
+
+fetch("https://script.google.com/macros/s/AKfycbzMC5dpp0Tp4lBkMwSKlTVhk3L9VwpqjROcqAGFkztPqnyEwJKas9gV1k7xcM9Qy3gt/exec", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  body: data.toString()
+});
     .then(() => {
 
   const guestName = nameInput.value.trim();
