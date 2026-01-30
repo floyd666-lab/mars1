@@ -1496,6 +1496,11 @@ document.querySelectorAll(".schedule-item").forEach(item => {
 }
 
 setLang(localStorage.getItem("lang") || "ru");
+  // ===== INIT LANGUAGE ON PAGE LOAD =====
+document.addEventListener("DOMContentLoaded", () => {
+  const savedLang = localStorage.getItem("lang") || "ru";
+  setLang(savedLang);
+});
 </script>
 
 
