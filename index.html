@@ -1099,50 +1099,56 @@ input,select,textarea{
   50%  { transform: translateY(8px); }
   100% { transform: translateY(0); }
 }
-/* ===== HERO NAMES — PREMIUM ===== */
+
+/* ===== HERO NAMES — ROMANTIC ===== */
+
 .hero-names {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 18px;
-  margin-bottom: 12px;
+  gap: 22px;
+  margin-bottom: 18px;
   text-align: center;
 }
 
+/* имена */
 .hero-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 44px;
-  font-weight: 500;
-  letter-spacing: 0.6px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 46px;
+  font-weight: 400;
+  letter-spacing: 1.2px;
   color: #ffffff;
 
   text-shadow:
-    0 3px 12px rgba(0,0,0,0.45),
-    0 10px 30px rgba(0,0,0,0.35);
+    0 2px 8px rgba(0,0,0,0.35),
+    0 8px 24px rgba(0,0,0,0.25);
 }
 
+/* амперсанд — романтичный центр */
 .hero-amp {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 48px;
-  font-weight: 400;
+  font-size: 56px;
+  font-weight: 300;
   font-style: italic;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255,255,255,0.9);
 
-  transform: translateY(2px);
+  transform: translateY(4px);
+  text-shadow:
+    0 2px 10px rgba(0,0,0,0.4);
 }
 
-/* мобильная адаптация */
+/* мобильная версия */
 @media (max-width: 480px) {
   .hero-name {
     font-size: 34px;
+    letter-spacing: 0.8px;
   }
 
   .hero-amp {
-    font-size: 38px;
+    font-size: 42px;
   }
 }
-
-
+  
 </style>
 </head>
 
