@@ -1465,11 +1465,21 @@ if (storyText && t.storyText) {
   setText("mapPlace", t.mapPlace);
   setText("countdownTitle", t.countdownTitle);
 
-  // schedule items
-  document.querySelectorAll(".schedule-item").forEach(item => {
-    const key = item.dataset.key;
-    if (t[key]) item.innerText = t[key];
-  });
+ // schedule items (formatted)
+document.querySelectorAll(".schedule-item").forEach(item => {
+  const key = item.dataset.key;
+  if (!t[key]) return;
+
+  const parts = t[key].split("—");
+  const time = parts[0]?.trim() || "";
+  const event = parts[1]?.trim() || "";
+
+  item.innerHTML = `
+    <span class="schedule-time">${time}</span>
+    <span class="schedule-event">${event}</span>
+  `;
+});
+
 
   // name placeholder
   const guestName = document.getElementById("guestName");
@@ -1692,6 +1702,54 @@ function toggleStory(section) {
   cursor: not-allowed;
   filter: grayscale(0.6);
 }
+/* ===== SCHEDULE BEAUTIFUL ===== */
+
+.schedule-list {
+  max-width: 360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.schedule-item {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  align-items: center;
+}
+
+.schedule-time {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #7A1F2B;
+}
+
+.schedule-event {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #3f3f3f;
+}
+@media (max-width: 480px) {
+  .schedule-list {
+    gap: 12px;
+  }
+
+  .schedule-item {
+    grid-template-columns: 64px 1fr;
+  }
+
+  .schedule-time {
+    font-size: 15px;
+  }
+
+  .schedule-event {
+    font-size: 14px;
+  }
+}
+
+  
 </style>
 <div class="container">
 <div class="rsvp-section">
