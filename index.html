@@ -467,35 +467,11 @@ input,select,textarea{
 }
 
 /* ===== HERO NAMES BEAUTIFUL ALIGN ===== */
-.hero-names {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  flex-wrap: wrap;
-  font-family: 'Playfair Display', serif;
-  font-size: 42px;
-  color: white;
-  text-align: center;
-}
 
-.hero-names .amp {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 48px;
-  font-style: italic;
-  opacity: 0.8;
-  margin-top: 4px;
-}
+
 
 /* адаптация для телефонов */
 @media (max-width: 480px) {
-  .hero-names {
-    font-size: 34px;
-  }
-
-  .hero-names .amp {
-    font-size: 38px;
-  }
 }
 /* ===== MOBILE COUPLE FIX ===== */
 @media (max-width: 480px) {
@@ -867,11 +843,7 @@ input,select,textarea{
     position: relative;
     z-index: 2;
 }
-.hero-names {
-  text-shadow:
-    0 3px 10px rgba(0,0,0,0.45),
-    0 10px 30px rgba(0,0,0,0.35);
-}
+
 /* ===== HERO META TEXT ===== */
 .hero-meta {
   margin-top: 18px;
@@ -1127,6 +1099,48 @@ input,select,textarea{
   50%  { transform: translateY(8px); }
   100% { transform: translateY(0); }
 }
+/* ===== HERO NAMES — PREMIUM ===== */
+.hero-names {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  color: #ffffff;
+
+  text-shadow:
+    0 3px 12px rgba(0,0,0,0.45),
+    0 10px 30px rgba(0,0,0,0.35);
+}
+
+.hero-amp {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255,255,255,0.85);
+
+  transform: translateY(2px);
+}
+
+/* мобильная адаптация */
+@media (max-width: 480px) {
+  .hero-name {
+    font-size: 34px;
+  }
+
+  .hero-amp {
+    font-size: 38px;
+  }
+}
 
 
 </style>
@@ -1146,11 +1160,12 @@ input,select,textarea{
 <div class="hero">
   <div class="hero-content">
 
-    <div class="hero-names">
-      <span class="name-left">Марсель</span>
-      <span class="amp">&</span>
-      <span class="name-right">Рухсора</span>
-    </div>
+<div class="hero-names">
+  <span class="hero-name">Марсель</span>
+  <span class="hero-amp">&amp;</span>
+  <span class="hero-name">Рухсора</span>
+</div>
+
 
     <div class="hero-meta">
   <div class="phrase" id="phrase"></div>
