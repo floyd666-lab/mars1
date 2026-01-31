@@ -1465,8 +1465,10 @@ if (storyText && t.storyText) {
   setText("mapPlace", t.mapPlace);
   setText("countdownTitle", t.countdownTitle);
 
- // schedule items (formatted)
-document.querySelectorAll(".schedule-item").forEach(item => {
+// schedule items with stagger animation
+const scheduleItems = document.querySelectorAll(".schedule-item");
+
+scheduleItems.forEach((item, index) => {
   const key = item.dataset.key;
   if (!t[key]) return;
 
@@ -1478,7 +1480,16 @@ document.querySelectorAll(".schedule-item").forEach(item => {
     <span class="schedule-time">${time}</span>
     <span class="schedule-event">${event}</span>
   `;
+
+  // сброс анимации
+  item.classList.remove("show");
+
+  // появление по очереди
+  setTimeout(() => {
+    item.classList.add("show");
+  }, index * 120);
 });
+
 
 
   // name placeholder
@@ -1749,7 +1760,21 @@ function toggleStory(section) {
   }
 }
 
-  
+  /* ===== SCHEDULE ANIMATION ===== */
+
+.schedule-item {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.schedule-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 </style>
 <div class="container">
 <div class="rsvp-section">
