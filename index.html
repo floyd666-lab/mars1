@@ -61,7 +61,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  filter: contrast(1.05) saturate(1.05);
 }
 
 @media (max-width: 768px) {
@@ -435,13 +434,13 @@ input,select,textarea{
   inset: 0;
   pointer-events: none; /* ⬅️ ВОТ ЭТО КЛЮЧ */
 
-  background: linear-gradient(
-    to bottom,
-    rgba(111, 15, 28, 0) 0%,
-    rgba(111, 15, 28, 0.15) 35%,
-    rgba(111, 15, 28, 0.6) 65%,
-    #6f0f1c 100%
-  );
+background: linear-gradient(
+  to bottom,
+  rgba(0,0,0,0.0) 0%,
+  rgba(0,0,0,0.15) 40%,
+  rgba(0,0,0,0.55) 70%,
+  #6f0f1c 100%
+);
 
   z-index: 1;
 }
@@ -541,7 +540,11 @@ input,select,textarea{
 .countdown-wrap {
   margin-top: 24px;
 }
-
+</div>
+</div>
+  <div class="hero-hint">
+  Листайте вниз ↓
+</div>
 /* ===== COUNTDOWN TITLE ===== */
 .countdown-title {
   margin-bottom: 12px;
@@ -1079,8 +1082,8 @@ input,select,textarea{
 }
 
 .scroll-down svg {
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   stroke: #ffffff;
   stroke-width: 1.8;
   fill: none;
@@ -1100,6 +1103,7 @@ input,select,textarea{
   100% { transform: translateY(0); }
 }
 
+  
 /* ===== HERO NAMES — CLEAN ROMANTIC ===== */
 
 .hero-names {
@@ -1141,7 +1145,21 @@ input,select,textarea{
     font-size: 26px;
   }
 }
+/* ===== HERO SCROLL HINT ===== */
+.hero-hint {
+  margin-top: 18px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.85);
+  animation: hintFade 2.2s ease-in-out infinite;
+}
 
+@keyframes hintFade {
+  0%   { opacity: 0.3; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.3; }
+}
   
 </style>
 </head>
