@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Марсель & Рухсора приглашают вас на свадьбу</title>
 <meta name="robots" content="noindex, nofollow">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
 
+  
 <style>
   /* ===== GLOBAL FORM FIX ===== */
 *, *::before, *::after {
@@ -24,7 +25,7 @@
 }
 body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   background: #6f0f1c; /* ← ОДИН цвет */
   color: #222;
   min-height: 100vh;
@@ -780,7 +781,7 @@ background: linear-gradient(
 /* 🤵 Костюм */
 .color:nth-child(4)::before,
 .color:nth-child(5)::before {
-  background-image: url("data:image/svg+xml;utf8,\
+ 
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'>\
 <path d='M7 2l5 4 5-4v6l-3 2v12H10V10L7 8V2z'/>\
 </svg>");
@@ -1116,14 +1117,12 @@ background: linear-gradient(
 }
 
 .hero-name {
-  font-family: 'DM Serif Display', serif;
-  font-size: 44px;
+  font-family: 'Allura', cursive;
+  font-size: clamp(52px, 9vw, 92px);
   font-weight: 400;
-  letter-spacing: 0.6px;
-  color: #ffffff;
+  letter-spacing: 1px;
+  color: #8b1e2d;
 
-  text-shadow:
-    0 2px 10px rgba(0,0,0,0.35);
 }
 
 .hero-amp {
@@ -1160,7 +1159,18 @@ background: linear-gradient(
   50%  { opacity: 1; }
   100% { opacity: 0.3; }
 }
-  
+  .hero-art {
+  margin: 40px auto 32px;
+  width: 72%;
+  max-width: 360px;
+}
+
+.hero-art img {
+  width: 100%;
+  display: block;
+  border-radius: 18px;
+  filter: grayscale(100%) contrast(1.05);
+}
 </style>
 </head>
 
@@ -1179,12 +1189,15 @@ background: linear-gradient(
   <div class="hero-content">
 
 <div class="hero-names">
-  <span class="hero-name">Марсель</span>
+  <span class="hero-name">Marsel</span>
   <span class="hero-amp">&amp;</span>
-  <span class="hero-name">Рухсора</span>
+  <span class="hero-name">Rukhsora</span>
 </div>
 
-
+    <div class="hero-art">
+  <img src="photos/hero-art.jpg" alt="">
+</div>
+    
     <div class="hero-meta">
   <div class="phrase" id="phrase"></div>
   <div class="hero-date" id="heroDate"></div>
@@ -1254,7 +1267,7 @@ background: linear-gradient(
       <div class="frame">
         <img src="photos/groom.jpg" alt="Groom">
       </div>
-      <div class="name">Марсель</div>
+      <div class="name">Marsel</div>
       <div class="role" id="groomRole"></div>
     </div>
 
@@ -1262,7 +1275,7 @@ background: linear-gradient(
       <div class="frame">
         <img src="photos/bride.jpg" alt="Bride">
       </div>
-      <div class="name">Рухсора</div>
+      <div class="name">Rukhsora</div>
       <div class="role" id="brideRole"></div>
     </div>
   </div>
