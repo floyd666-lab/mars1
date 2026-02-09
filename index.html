@@ -155,31 +155,6 @@ input,select,textarea{
   padding: 14px 26px;
   border-radius: 999px;
 
-  background: linear-gradient(
-    135deg,
-    #6f0f1c 0%,
-    #8a1c2c 45%,
-    #a8323f 100%
-  );
-
-  color: #fff;
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 0.4px;
-
-  cursor: pointer;
-  user-select: none;
-
-  box-shadow:
-    0 8px 24px rgba(111, 15, 28, 0.35),
-    inset 0 0 0 1px rgba(255,255,255,0.15);
-
-  transition: 
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    filter 0.25s ease;
-}
-
 /* hover */
 .music-btn:hover {
   transform: translateY(-2px) scale(1.03);
@@ -420,15 +395,7 @@ input,select,textarea{
   opacity: 1;
   transform: translateY(0);
 }
-.hero {
-  height: 100vh;
-  background: url("photos/main.jpg") center/cover no-repeat;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
+
 .hero::before {
   content: "";
   position: absolute;
@@ -541,11 +508,7 @@ background: linear-gradient(
 .countdown-wrap {
   margin-top: 24px;
 }
-</div>
-</div>
-  <div class="hero-hint">
-  Листайте вниз ↓
-</div>
+
 /* ===== COUNTDOWN TITLE ===== */
 .countdown-title {
   margin-bottom: 12px;
@@ -634,83 +597,6 @@ background: linear-gradient(
     font-size: 18px;
   }
 }
-/* ===== DRESS CODE PALETTE (SAFE) ===== */
-:root {
-  --dress-1: #F3EFEA;
-  --dress-2: #EADFCC;
-  --dress-3: #C9A3A8;
-  --dress-4: #8B7E74;
-  --dress-5: #6D1F2B;
-}
-
-/* контейнер цветов */
-.colors {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 24px;
-  flex-wrap: wrap;
-}
-
-/* один цвет */
-.color {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-}
-
-/* анимация наведения */
-.color:hover {
-  transform: translateY(-6px) scale(1.08);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
-}
-
-/* подпись */
-.color::after {
-  content: attr(data-name);
-  position: absolute;
-  bottom: -26px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 11px;
-  letter-spacing: 1px;
-  white-space: nowrap;
-  opacity: 0;
-  transition: 0.3s ease;
-  color: #6D1F2B;
-}
-
-/* показываем подпись */
-.color:hover::after {
-  opacity: 1;
-}
-/* ===== ICON ON HOVER ===== */
-.color::before {
-  content: attr(data-icon);
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  color: #6D1F2B;
-  background: rgba(255,255,255,0.55);
-  border-radius: 50%;
-  opacity: 0;
-  transform: scale(0.6);
-  transition: 0.35s ease;
-  pointer-events: none;
-}
-
-/* появление иконки */
-.color:hover::before {
-  opacity: 1;
-  transform: scale(1);
-}
 /* ===== DRESS CODE COLORS (SVG ICONS) ===== */
 .colors {
   display: flex;
@@ -781,7 +667,7 @@ background: linear-gradient(
 /* 🤵 Костюм */
 .color:nth-child(4)::before,
 .color:nth-child(5)::before {
- 
+  background-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'>\
 <path d='M7 2l5 4 5-4v6l-3 2v12H10V10L7 8V2z'/>\
 </svg>");
@@ -917,31 +803,6 @@ background: linear-gradient(
   opacity: 0.7;
 }
 
-  background: linear-gradient(
-    135deg,
-    #6f0f1c 0%,
-    #8a1c2c 45%,
-    #a8323f 100%
-  );
-
-  color: #fff;
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.4px;
-
-  border: none;
-  border-radius: 999px;
-  cursor: pointer;
-
-  box-shadow:
-    0 10px 26px rgba(111, 15, 28, 0.35),
-    inset 0 0 0 1px rgba(255,255,255,0.15);
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    filter 0.25s ease;
-}
   /* ===== ATTENDANCE HEART SELECT ===== */
 
 .attendance-title {
@@ -1807,7 +1668,7 @@ function toggleStory(section) {
 }
 
 </style>
-<div class="container">
+  
 <div class="rsvp-section">
   
   <div class="rsvp-title">Подтвердите присутствие</div>
@@ -2098,6 +1959,6 @@ function stopCelebration() {
 
 
 </script>
-
+</div>
 </body>
 </html>
