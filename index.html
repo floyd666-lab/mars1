@@ -1788,33 +1788,42 @@ function toggleStory(section) {
 
 .poster-top {
   display: flex;
-  gap: 18px;
+  gap: 20px;
   align-items: flex-start;
 }
 
 .poster-date {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   font-family: 'Playfair Display', serif;
   color: #7A1F2B;
+
+  min-width: 64px;
   line-height: 1;
 }
 
 .poster-day {
-  font-size: 40px;
+  font-size: 46px;
   font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .poster-month {
   font-size: 22px;
   font-weight: 500;
-  margin-top: 6px;
+  margin-top: 14px;
+  letter-spacing: 2px;
 }
 
 .poster-year {
-  font-size: 16px;
-  letter-spacing: 2px;
-  margin-top: 10px;
-  opacity: 0.8;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 18px;
+  letter-spacing: 4px;
+  opacity: 0.75;
 }
 
 .poster-text {
