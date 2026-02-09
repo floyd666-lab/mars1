@@ -1156,57 +1156,38 @@ input,select,textarea{
 </div>
 
 <div class="container">
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-content">
+<!-- HERO POSTER -->
+<div class="hero-poster">
 
-<div class="hero-names">
-  <span class="hero-name">Марсель</span>
-  <span class="hero-amp">&amp;</span>
-  <span class="hero-name">Рухсора</span>
-</div>
+  <div class="poster-photo">
+    <img src="photos/main.jpg" alt="Wedding photo">
+  </div>
 
+  <div class="poster-info">
 
-    <div class="hero-meta">
-  <div class="phrase" id="phrase"></div>
-  <div class="hero-date" id="heroDate"></div>
-</div>
+    <div class="poster-top">
+      <div class="poster-date">
+        <div class="poster-day">11</div>
+        <div class="poster-month">04</div>
+        <div class="poster-year">2026</div>
+      </div>
 
-    <!-- COUNTDOWN -->
-    <div class="countdown-wrap">
-      <div class="countdown-title" id="countdownTitle"></div>
-
-      <div class="countdown" id="countdown">
-        <div class="time-box">
-          <span id="days" class="flip">00</span>
-          <small id="daysLabel">Дней</small>
-        </div>
-        <div class="time-box">
-          <span id="hours" class="flip">00</span>
-          <small id="hoursLabel">Часов</small>
-        </div>
-        <div class="time-box">
-          <span id="minutes" class="flip">00</span>
-          <small id="minutesLabel">Минут</small>
-        </div>
-        <div class="time-box">
-          <span id="seconds" class="flip">00</span>
-          <small id="secondsLabel">Секунд</small>
-          
+      <div class="poster-text">
+        <div class="poster-location" id="posterLocation">Ташкент</div>
+        <div class="poster-invite" id="posterInvite">
+          Мы будем рады разделить с вами этот особенный день.
         </div>
       </div>
     </div>
-   <div class="scroll-down" id="scrollToStory">
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M6 10l6 6 6-6"/>
-  </svg>
-</div>
 
+    <div class="poster-names">
+      <div class="poster-name">Марсель</div>
+      <div class="poster-and">&</div>
+      <div class="poster-name">Рухсора</div>
+    </div>
 
   </div>
 </div>
-
-
 <!-- STORY -->
 <div class="section story-section" id="story" onclick="toggleStory(this)">
   <div class="title" id="storyTitle"></div>
@@ -1305,7 +1286,8 @@ groomRole: "Жених",
 brideRole: "Невеста",
     storyText: "Их встреча началась с простой прогулки, ставшей особенной — смех, разговоры и сердце, которое она приняла не сразу.Отменённое кино привело их в горы, к звёздам и первому путешествию вдвоём.<br><br>Под ночным небом они загадали одно желание — быть вместе всегда.",
     attendanceTitle: "Сможете ли вы прийти?",
-
+posterLocation: "Ташкент",
+posterInvite: "Мы будем рады разделить с вами этот особенный день.",
     phrase:"Разделите с нами самый счастливый день!",
     storyTitle:"Наша история",
     giftsTitle:"Пожелания по подаркам",
@@ -1344,6 +1326,8 @@ secondsLabel: "секунд",
 coupleTitle: "Kuyov va Kelin",
 groomRole: "Kuyov",
 brideRole: "Kelin",
+    posterLocation: "Toshkent",
+posterInvite: "Biz bilan ushbu unutilmas kunni birga nishonlang.",
     storyText: "Ularning uchrashuvi oddiy sayrdan boshlandi, ammo tez orada o‘ziga xos bo‘lib qoldi — kulgu, suhbatlar va u darhol qabul qilmagan yurak.Bekor bo‘lgan kino ularni tog‘larga, yulduzlarga va birinchi birga sayohatga olib bordi.<br><br>Tungi osmon ostida ular bitta tilak tilashdi — har doim birga bo‘lish.",
     phrase:"Hayotimizdagi eng baxtli kunni biz bilan birga o‘tkazing!",
     storyTitle:"Bizning hikoyamiz",
@@ -1386,6 +1370,9 @@ secondsLabel: "soniya",
 coupleTitle: "The couple",
 groomRole: "Groom",
 brideRole: "Bride",
+    posterLocation: "Tashkent",
+posterInvite: "We would be happy to share this special day with you.",
+
     storyText: "Their meeting began with a simple walk that quickly became special — laughter, conversations, and a heart she didn’t accept right away.A canceled movie led them to the mountains, the stars, and their first journey together.<br><br>Under the night sky, they made one wish — to be together always.",
     phrase:"Share with us the happiest day of our lives!",
     storyTitle:"Our Story",
@@ -1464,6 +1451,9 @@ if (storyText && t.storyText) {
   setText("mapTitle", t.mapTitle);
   setText("mapPlace", t.mapPlace);
   setText("countdownTitle", t.countdownTitle);
+  setText("posterLocation", t.posterLocation);
+setText("posterInvite", t.posterInvite);
+
 
 // schedule items with stagger animation
 const scheduleItems = document.querySelectorAll(".schedule-item");
@@ -1774,9 +1764,109 @@ function toggleStory(section) {
   opacity: 1;
   transform: translateY(0);
 }
+/* ===== HERO POSTER (LIKE SAMPLE) ===== */
+.hero-poster {
+  max-width: 420px;
+  margin: 30px auto;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #f8f2ef;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+}
 
+.poster-photo img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.2) contrast(1.05);
+}
+
+.poster-info {
+  padding: 26px 22px 30px;
+}
+
+.poster-top {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.poster-date {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  color: #7A1F2B;
+  line-height: 1;
+}
+
+.poster-day {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.poster-month {
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+.poster-year {
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+.poster-text {
+  flex: 1;
+  font-family: 'Cormorant Garamond', serif;
+  color: #333;
+}
+
+.poster-location {
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+.poster-invite {
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.poster-names {
+  margin-top: 28px;
+  text-align: center;
+  font-family: 'DM Serif Display', serif;
+  color: #111;
+  letter-spacing: 2px;
+}
+
+.poster-name {
+  font-size: 36px;
+}
+
+.poster-and {
+  font-size: 26px;
+  margin: 6px 0;
+  opacity: 0.65;
+}
+
+/* mobile */
+@media (max-width: 480px) {
+  .poster-photo img {
+    height: 460px;
+  }
+
+  .poster-name {
+    font-size: 30px;
+  }
+}
 </style>
-<div class="container">
+
 <div class="rsvp-section">
   
   <div class="rsvp-title">Подтвердите присутствие</div>
