@@ -1002,12 +1002,6 @@
           <option value="Не пью алкоголь">Не пью алкоголь</option>
         </select>
 
-        <select name="child" required>
-          <option value="">С вами будет ребёнок?</option>
-          <option value="Нет">Нет</option>
-          <option value="Да">Да</option>
-        </select>
-
         <textarea name="music" placeholder="Трек / Исполнитель / Жанр" rows="3"></textarea>
 
         <button type="submit" id="sendBtn" class="rsvp-submit" disabled>Отправить</button>
@@ -1196,7 +1190,6 @@
       const nameInput = form.querySelector('[name="name"]');
       const foodSelect = form.querySelector('[name="food"]');
       const alcoholSelect = form.querySelector('[name="alcohol"]');
-      const childSelect = form.querySelector('[name="child"]');
       const musicInput = form.querySelector('[name="music"]');
 
       sendBtn.disabled = true;
@@ -1216,13 +1209,12 @@
           attendanceInput.value &&
           foodSelect.value &&
           alcoholSelect.value &&
-          childSelect.value &&
           musicInput.value.trim();
 
         sendBtn.disabled = !isComplete;
       }
 
-      [nameInput, foodSelect, alcoholSelect, childSelect, musicInput].forEach(el => {
+      [nameInput, foodSelect, alcoholSelect, musicInput].forEach(el => {
         el.addEventListener("input", checkFormComplete);
         el.addEventListener("change", checkFormComplete);
       });
@@ -1236,7 +1228,6 @@
           attendance: attendanceInput.value,
           food: foodSelect.value,
           alcohol: alcoholSelect.value,
-          child: childSelect.value,
           music: musicInput.value
         });
 
